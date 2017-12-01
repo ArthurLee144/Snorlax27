@@ -135,78 +135,26 @@ class App extends React.Component {
     return (
       <section>
         <div>
-          <h2>Write your diary and let an AI analyze it for you.</h2>
+          <h2>Let an AI analyze your writing for the most effective communication.</h2>
         </div>
         <div className="ionicon">
           <i className="ion-ios-glasses-outline icon-big"></i>
           <h3>Natural Language API</h3><br></br><br></br>
           <p>
-            Aylien TextAPI will analyze the sentiment of your text (from negative to positive) - so you get a better understanding of your daily feelings!
-          </p>
+            Emotisphere will analyze the sentiment of your text - so you get a better understanding of your writing and how it can impact others.          </p>
         </div>
       </section>
     )
   }
 
-  headerRender() {
-    var scope = this;
-    if (!this.state.userLoggedIn) {
-      return (
-        <header id="top">
-          <nav>
-            <div className="row">
-              <img src="https://lh3.googleusercontent.com/0xBvdPgDd3s5gaDcq-CNkgoQPtcT5lPxO_SMxyUcz0rAf61OLprSnA2hLMsU5YFTx4LoyaxEcWKJUmcRuJvQ5uDm3q3hiw8QQaMjesuWk-Q4Ow7UP2WAPt8NaIUFbAqvO24V7eux7XzFwiEU8C8NhALt-0Uy-bcKhUEHpJTjj3Wk13OH-cb-zQh0kCVv0Dwcjqyop5EAvu5Yk-TQJxBQ7ZG_BVM8n2wOVyL-Jf7gI6MqXOvhHwyzOwVveqpquNPitCWS3MfGl373LKwaxZHWPTllUYReyTeDvmtUJ1wX1fX3X64DocaNwn4YPfRZg2GiJSom6sD4fxXvAjinm4pWNktHckZjZo_oLj2a451ZnxEBsPfpKm2gmJIoGL7qgCNSuxxQNDDuNo3pE9Bvl-xQoEEHfyaeqDGV1BkzNcXqloCpYJnlnRNxgRQmZ8AEIkgJlpissyxy7LJshyHpvAD5oYK3q1hShq4SaXvUTAp09L6P6Yikj9ylNwNxH6pVtqDBiDfdygIa7gMh4pznA2qLuzz333WeByBGL0OAAnM_4twzyN_9OkpBLsG8GAtc1g=s200-no"></img>
-              <ul className="main-nav">
-                <li><a href="#signin">Sign In</a></li>
-                <li><a href="#signin">Create Account</a></li>
-              </ul>
-            </div>
-            <div className="hero-text-box">
-
-              <h1 id="h1-header">Goodbye solitary.<br></br>Hello together.</h1>
-              <button id="audio" onClick={this.playJazz} className="btn btn-warning">Jazz</button><div className="space"></div>
-              <button id="audio" onClick={this.playKPOP} className="btn btn-info" href="#">DAN FAV</button><div className="space"></div>
-              <button id="audio" onClick={this.playBeethoven} className="btn btn-success" href="#">BEN FAV</button><div className="space"></div>
-              <button id="audio" onClick={this.playTotoro} className="btn btn-default" href="#">YAZ FAV</button><div className="space"></div>
-              <button id="audio" onClick={this.playRick} className="btn btn-primary" href="#">MIK FAV</button><div className="space"></div>
-            </div>
-          </nav>
-        </header>
-      );
-    } else {
-      return (
-        <header id="top">
-          <nav>
-            <div className="row">
-              <img src="https://lh3.googleusercontent.com/0xBvdPgDd3s5gaDcq-CNkgoQPtcT5lPxO_SMxyUcz0rAf61OLprSnA2hLMsU5YFTx4LoyaxEcWKJUmcRuJvQ5uDm3q3hiw8QQaMjesuWk-Q4Ow7UP2WAPt8NaIUFbAqvO24V7eux7XzFwiEU8C8NhALt-0Uy-bcKhUEHpJTjj3Wk13OH-cb-zQh0kCVv0Dwcjqyop5EAvu5Yk-TQJxBQ7ZG_BVM8n2wOVyL-Jf7gI6MqXOvhHwyzOwVveqpquNPitCWS3MfGl373LKwaxZHWPTllUYReyTeDvmtUJ1wX1fX3X64DocaNwn4YPfRZg2GiJSom6sD4fxXvAjinm4pWNktHckZjZo_oLj2a451ZnxEBsPfpKm2gmJIoGL7qgCNSuxxQNDDuNo3pE9Bvl-xQoEEHfyaeqDGV1BkzNcXqloCpYJnlnRNxgRQmZ8AEIkgJlpissyxy7LJshyHpvAD5oYK3q1hShq4SaXvUTAp09L6P6Yikj9ylNwNxH6pVtqDBiDfdygIa7gMh4pznA2qLuzz333WeByBGL0OAAnM_4twzyN_9OkpBLsG8GAtc1g=s200-no"></img>
-              <ul className="main-nav"></ul>
-            </div>
-            <div className="hero-text-box">
-              <h1 id="h1-header">Goodbye solitary.<br></br>Hello together.</h1>
-              <button id="audio" onClick={this.playJazz} className="btn btn-warning">Jazz</button><div className="space"></div>
-              <button id="audio" onClick={this.playKPOP} className="btn btn-info" href="#">DAN FAV</button><div className="space"></div>
-              <button id="audio" onClick={this.playBeethoven} className="btn btn-success" href="#">BEN FAV</button><div className="space"></div>
-              <button id="audio" onClick={this.playTotoro} className="btn btn-default" href="#">YAZ FAV</button><div className="space"></div>
-              <button id="audio" onClick={this.playRick} className="btn btn-primary" href="#">MIK FAV</button><div className="space"></div>
-            </div>
-          </nav>
-        </header>
-      );
-    }
-  }
-
   seemlessBackground() {
-    if (this.state.userLoggedIn) {
-      return (
-        <div className="seemless2"><h2 id="success">Every great dream begins with a dreamer. Always remember, you have within you the strength, patience, and the passion to reach for the stars to change the world.</h2><h3 id="author">Harriet Tubman</h3></div>
-      );
-    } else {
-      return (
-        <div className="seemless">
+    return (
+      <div className="seemless2">
+        <div id="centerlog">
           <Login handleLogin={this.handleLogin}/>
         </div>
-      );
-    }
+      </div>
+    );
   }
 
   filterNavbar() {
@@ -262,14 +210,12 @@ class App extends React.Component {
   }
 
   filterComponents() {
-    if (this.state.userLoggedIn) {
       return (
         <div>
           <Input rerender={this.rerender} />
           <DiaryList list={this.state.entries} />
         </div>
       );
-    }
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
@@ -277,7 +223,6 @@ class App extends React.Component {
   render() {
     return(
       <div>
-        {this.headerRender()}
         {this.filterNavbar()}
         {this.icons()}
         {this.seemlessBackground()}

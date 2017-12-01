@@ -165,10 +165,11 @@ h1 {
 .btn {
   margin-top: 10px;
   display: inline-block;
-  padding: 10px 30px;
+  margin-left: 6%;
   font-weight: 300;
   text-decoration: none;
-  color: black;
+  color: white;
+  background-color: #ce8b0e;
 }
 
 
@@ -243,9 +244,13 @@ navbar {
   width: 310px;
   height: 310px;
   padding: 50px;
-  margin-top: 5%;
-  margin-left: 5%;
   display: inline-block;
+}
+
+#centerlog {
+  display: inline-block;
+  margin-top: 2%;
+  margin-left: 37%;
 }
 
 i {
@@ -432,6 +437,10 @@ font-family: 'Noto Serif', serif; */
     line-height: 120%;
     vertical-align: middle;
     margin-top: -5px;
+}
+
+.tab {
+  margin-left: 20px;
 }
 
 

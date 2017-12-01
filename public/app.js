@@ -168,7 +168,7 @@ var App = function (_React$Component) {
           React.createElement(
             'h2',
             null,
-            'Write your diary and let an AI analyze it for you.'
+            'Let an AI analyze your writing for the most effective communication.'
           )
         ),
         React.createElement(
@@ -185,175 +185,23 @@ var App = function (_React$Component) {
           React.createElement(
             'p',
             null,
-            'Aylien TextAPI will analyze the sentiment of your text (from negative to positive) - so you get a better understanding of your daily feelings!'
+            'Emotisphere will analyze the sentiment of your text - so you get a better understanding of your writing and how it can impact others.          '
           )
         )
       );
     }
   }, {
-    key: 'headerRender',
-    value: function headerRender() {
-      var scope = this;
-      if (!this.state.userLoggedIn) {
-        return React.createElement(
-          'header',
-          { id: 'top' },
-          React.createElement(
-            'nav',
-            null,
-            React.createElement(
-              'div',
-              { className: 'row' },
-              React.createElement('img', { src: 'https://lh3.googleusercontent.com/0xBvdPgDd3s5gaDcq-CNkgoQPtcT5lPxO_SMxyUcz0rAf61OLprSnA2hLMsU5YFTx4LoyaxEcWKJUmcRuJvQ5uDm3q3hiw8QQaMjesuWk-Q4Ow7UP2WAPt8NaIUFbAqvO24V7eux7XzFwiEU8C8NhALt-0Uy-bcKhUEHpJTjj3Wk13OH-cb-zQh0kCVv0Dwcjqyop5EAvu5Yk-TQJxBQ7ZG_BVM8n2wOVyL-Jf7gI6MqXOvhHwyzOwVveqpquNPitCWS3MfGl373LKwaxZHWPTllUYReyTeDvmtUJ1wX1fX3X64DocaNwn4YPfRZg2GiJSom6sD4fxXvAjinm4pWNktHckZjZo_oLj2a451ZnxEBsPfpKm2gmJIoGL7qgCNSuxxQNDDuNo3pE9Bvl-xQoEEHfyaeqDGV1BkzNcXqloCpYJnlnRNxgRQmZ8AEIkgJlpissyxy7LJshyHpvAD5oYK3q1hShq4SaXvUTAp09L6P6Yikj9ylNwNxH6pVtqDBiDfdygIa7gMh4pznA2qLuzz333WeByBGL0OAAnM_4twzyN_9OkpBLsG8GAtc1g=s200-no' }),
-              React.createElement(
-                'ul',
-                { className: 'main-nav' },
-                React.createElement(
-                  'li',
-                  null,
-                  React.createElement(
-                    'a',
-                    { href: '#signin' },
-                    'Sign In'
-                  )
-                ),
-                React.createElement(
-                  'li',
-                  null,
-                  React.createElement(
-                    'a',
-                    { href: '#signin' },
-                    'Create Account'
-                  )
-                )
-              )
-            ),
-            React.createElement(
-              'div',
-              { className: 'hero-text-box' },
-              React.createElement(
-                'h1',
-                { id: 'h1-header' },
-                'Goodbye solitary.',
-                React.createElement('br', null),
-                'Hello together.'
-              ),
-              React.createElement(
-                'button',
-                { id: 'audio', onClick: this.playJazz, className: 'btn btn-warning' },
-                'Jazz'
-              ),
-              React.createElement('div', { className: 'space' }),
-              React.createElement(
-                'button',
-                { id: 'audio', onClick: this.playKPOP, className: 'btn btn-info', href: '#' },
-                'DAN FAV'
-              ),
-              React.createElement('div', { className: 'space' }),
-              React.createElement(
-                'button',
-                { id: 'audio', onClick: this.playBeethoven, className: 'btn btn-success', href: '#' },
-                'BEN FAV'
-              ),
-              React.createElement('div', { className: 'space' }),
-              React.createElement(
-                'button',
-                { id: 'audio', onClick: this.playTotoro, className: 'btn btn-default', href: '#' },
-                'YAZ FAV'
-              ),
-              React.createElement('div', { className: 'space' }),
-              React.createElement(
-                'button',
-                { id: 'audio', onClick: this.playRick, className: 'btn btn-primary', href: '#' },
-                'MIK FAV'
-              ),
-              React.createElement('div', { className: 'space' })
-            )
-          )
-        );
-      } else {
-        return React.createElement(
-          'header',
-          { id: 'top' },
-          React.createElement(
-            'nav',
-            null,
-            React.createElement(
-              'div',
-              { className: 'row' },
-              React.createElement('img', { src: 'https://lh3.googleusercontent.com/0xBvdPgDd3s5gaDcq-CNkgoQPtcT5lPxO_SMxyUcz0rAf61OLprSnA2hLMsU5YFTx4LoyaxEcWKJUmcRuJvQ5uDm3q3hiw8QQaMjesuWk-Q4Ow7UP2WAPt8NaIUFbAqvO24V7eux7XzFwiEU8C8NhALt-0Uy-bcKhUEHpJTjj3Wk13OH-cb-zQh0kCVv0Dwcjqyop5EAvu5Yk-TQJxBQ7ZG_BVM8n2wOVyL-Jf7gI6MqXOvhHwyzOwVveqpquNPitCWS3MfGl373LKwaxZHWPTllUYReyTeDvmtUJ1wX1fX3X64DocaNwn4YPfRZg2GiJSom6sD4fxXvAjinm4pWNktHckZjZo_oLj2a451ZnxEBsPfpKm2gmJIoGL7qgCNSuxxQNDDuNo3pE9Bvl-xQoEEHfyaeqDGV1BkzNcXqloCpYJnlnRNxgRQmZ8AEIkgJlpissyxy7LJshyHpvAD5oYK3q1hShq4SaXvUTAp09L6P6Yikj9ylNwNxH6pVtqDBiDfdygIa7gMh4pznA2qLuzz333WeByBGL0OAAnM_4twzyN_9OkpBLsG8GAtc1g=s200-no' }),
-              React.createElement('ul', { className: 'main-nav' })
-            ),
-            React.createElement(
-              'div',
-              { className: 'hero-text-box' },
-              React.createElement(
-                'h1',
-                { id: 'h1-header' },
-                'Goodbye solitary.',
-                React.createElement('br', null),
-                'Hello together.'
-              ),
-              React.createElement(
-                'button',
-                { id: 'audio', onClick: this.playJazz, className: 'btn btn-warning' },
-                'Jazz'
-              ),
-              React.createElement('div', { className: 'space' }),
-              React.createElement(
-                'button',
-                { id: 'audio', onClick: this.playKPOP, className: 'btn btn-info', href: '#' },
-                'DAN FAV'
-              ),
-              React.createElement('div', { className: 'space' }),
-              React.createElement(
-                'button',
-                { id: 'audio', onClick: this.playBeethoven, className: 'btn btn-success', href: '#' },
-                'BEN FAV'
-              ),
-              React.createElement('div', { className: 'space' }),
-              React.createElement(
-                'button',
-                { id: 'audio', onClick: this.playTotoro, className: 'btn btn-default', href: '#' },
-                'YAZ FAV'
-              ),
-              React.createElement('div', { className: 'space' }),
-              React.createElement(
-                'button',
-                { id: 'audio', onClick: this.playRick, className: 'btn btn-primary', href: '#' },
-                'MIK FAV'
-              ),
-              React.createElement('div', { className: 'space' })
-            )
-          )
-        );
-      }
-    }
-  }, {
     key: 'seemlessBackground',
     value: function seemlessBackground() {
-      if (this.state.userLoggedIn) {
-        return React.createElement(
+      return React.createElement(
+        'div',
+        { className: 'seemless2' },
+        React.createElement(
           'div',
-          { className: 'seemless2' },
-          React.createElement(
-            'h2',
-            { id: 'success' },
-            'Every great dream begins with a dreamer. Always remember, you have within you the strength, patience, and the passion to reach for the stars to change the world.'
-          ),
-          React.createElement(
-            'h3',
-            { id: 'author' },
-            'Harriet Tubman'
-          )
-        );
-      } else {
-        return React.createElement(
-          'div',
-          { className: 'seemless' },
+          { id: 'centerlog' },
           React.createElement(Login, { handleLogin: this.handleLogin })
-        );
-      }
+        )
+      );
     }
   }, {
     key: 'filterNavbar',
@@ -455,14 +303,12 @@ var App = function (_React$Component) {
   }, {
     key: 'filterComponents',
     value: function filterComponents() {
-      if (this.state.userLoggedIn) {
-        return React.createElement(
-          'div',
-          null,
-          React.createElement(Input, { rerender: this.rerender }),
-          React.createElement(DiaryList, { list: this.state.entries })
-        );
-      }
+      return React.createElement(
+        'div',
+        null,
+        React.createElement(Input, { rerender: this.rerender }),
+        React.createElement(DiaryList, { list: this.state.entries })
+      );
       this.handleLogin = this.handleLogin.bind(this);
       this.handleLogout = this.handleLogout.bind(this);
     }
@@ -472,7 +318,6 @@ var App = function (_React$Component) {
       return React.createElement(
         'div',
         null,
-        this.headerRender(),
         this.filterNavbar(),
         this.icons(),
         this.seemlessBackground(),
