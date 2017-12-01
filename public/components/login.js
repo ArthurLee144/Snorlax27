@@ -82,16 +82,26 @@ var Login = function (_React$Component) {
         React.createElement(
           "form",
           { onSubmit: this.handleSubmit },
-          "Enter a username: ",
+          React.createElement(
+            "div",
+            { className: "tab" },
+            "Enter a username:"
+          ),
+          " ",
           React.createElement("input", { id: "input", type: "text", onChange: this.handleUsername }),
-          "Enter a password: ",
+          React.createElement(
+            "div",
+            { className: "tab" },
+            "Enter a password:"
+          ),
+          " ",
           React.createElement("input", { id: "input", type: "text", onChange: this.handlePassword }),
           React.createElement(
             "a",
             { href: "#text" },
             React.createElement(
               "button",
-              { id: "submit", className: "btn btn-success", type: "submit", onClick: this.handleSubmit },
+              { id: "submit", className: "btn", type: "submit", onClick: this.handleSubmit },
               "Login"
             )
           ),
@@ -101,8 +111,17 @@ var Login = function (_React$Component) {
             { href: "#text" },
             React.createElement(
               "button",
-              { id: "submit", className: "btn btn-danger", type: "submit", onClick: this.handleCreate },
+              { id: "submit", className: "btn", type: "submit", onClick: this.handleCreate },
               "Create"
+            )
+          ),
+          React.createElement(
+            "a",
+            { href: "#text" },
+            React.createElement(
+              "button",
+              { id: "submit", className: "btn", type: "submit" },
+              "Continue as a Guest"
             )
           )
         )

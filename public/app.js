@@ -198,7 +198,7 @@ var App = function (_React$Component) {
         { className: 'seemless2' },
         React.createElement(
           'div',
-          { className: 'centerlogin', id: 'centerlog' },
+          { id: 'centerlog' },
           React.createElement(Login, { handleLogin: this.handleLogin })
         )
       );
