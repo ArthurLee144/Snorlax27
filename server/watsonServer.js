@@ -1,7 +1,7 @@
 var watsonAPI = require('watson-developer-cloud/tone-analyzer/v3');
 
 
-function analyzeTone(textInput) {
+function analyzeTone(textInput, cabllack) {
 	var watson = new watsonAPI({
 		username: "3d938769-5ffd-42a8-9f4d-ba10ae183b59",
 	  password: "sPm4qUZAK6Kr",
@@ -13,11 +13,10 @@ function analyzeTone(textInput) {
 			if (err) {
 				console.log('watson err', err);
 			} else {
-				return JSON.stringify(tone,null,6);
+				callback(JSON.stringify(tone,null,6));
 			}
 		}
 	);
 }
 
 module.exports.analyzeTone = analyzeTone;
-
