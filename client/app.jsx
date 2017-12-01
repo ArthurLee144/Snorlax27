@@ -148,53 +148,6 @@ class App extends React.Component {
     )
   }
 
-  headerRender() {
-    var scope = this;
-    if (!this.state.userLoggedIn) {
-      return (
-        <header id="top">
-          <nav>
-            <div className="row">
-              <img src="https://lh3.googleusercontent.com/0xBvdPgDd3s5gaDcq-CNkgoQPtcT5lPxO_SMxyUcz0rAf61OLprSnA2hLMsU5YFTx4LoyaxEcWKJUmcRuJvQ5uDm3q3hiw8QQaMjesuWk-Q4Ow7UP2WAPt8NaIUFbAqvO24V7eux7XzFwiEU8C8NhALt-0Uy-bcKhUEHpJTjj3Wk13OH-cb-zQh0kCVv0Dwcjqyop5EAvu5Yk-TQJxBQ7ZG_BVM8n2wOVyL-Jf7gI6MqXOvhHwyzOwVveqpquNPitCWS3MfGl373LKwaxZHWPTllUYReyTeDvmtUJ1wX1fX3X64DocaNwn4YPfRZg2GiJSom6sD4fxXvAjinm4pWNktHckZjZo_oLj2a451ZnxEBsPfpKm2gmJIoGL7qgCNSuxxQNDDuNo3pE9Bvl-xQoEEHfyaeqDGV1BkzNcXqloCpYJnlnRNxgRQmZ8AEIkgJlpissyxy7LJshyHpvAD5oYK3q1hShq4SaXvUTAp09L6P6Yikj9ylNwNxH6pVtqDBiDfdygIa7gMh4pznA2qLuzz333WeByBGL0OAAnM_4twzyN_9OkpBLsG8GAtc1g=s200-no"></img>
-              <ul className="main-nav">
-                <li><a href="#signin">Sign In</a></li>
-                <li><a href="#signin">Create Account</a></li>
-              </ul>
-            </div>
-            <div className="hero-text-box">
-
-              <h1 id="h1-header">Goodbye solitary.<br></br>Hello together.</h1>
-              <button id="audio" onClick={this.playJazz} className="btn btn-warning">Jazz</button><div className="space"></div>
-              <button id="audio" onClick={this.playKPOP} className="btn btn-info" href="#">DAN FAV</button><div className="space"></div>
-              <button id="audio" onClick={this.playBeethoven} className="btn btn-success" href="#">BEN FAV</button><div className="space"></div>
-              <button id="audio" onClick={this.playTotoro} className="btn btn-default" href="#">YAZ FAV</button><div className="space"></div>
-              <button id="audio" onClick={this.playRick} className="btn btn-primary" href="#">MIK FAV</button><div className="space"></div>
-            </div>
-          </nav>
-        </header>
-      );
-    } else {
-      return (
-        <header id="top">
-          <nav>
-            <div className="row">
-              <img src="https://lh3.googleusercontent.com/0xBvdPgDd3s5gaDcq-CNkgoQPtcT5lPxO_SMxyUcz0rAf61OLprSnA2hLMsU5YFTx4LoyaxEcWKJUmcRuJvQ5uDm3q3hiw8QQaMjesuWk-Q4Ow7UP2WAPt8NaIUFbAqvO24V7eux7XzFwiEU8C8NhALt-0Uy-bcKhUEHpJTjj3Wk13OH-cb-zQh0kCVv0Dwcjqyop5EAvu5Yk-TQJxBQ7ZG_BVM8n2wOVyL-Jf7gI6MqXOvhHwyzOwVveqpquNPitCWS3MfGl373LKwaxZHWPTllUYReyTeDvmtUJ1wX1fX3X64DocaNwn4YPfRZg2GiJSom6sD4fxXvAjinm4pWNktHckZjZo_oLj2a451ZnxEBsPfpKm2gmJIoGL7qgCNSuxxQNDDuNo3pE9Bvl-xQoEEHfyaeqDGV1BkzNcXqloCpYJnlnRNxgRQmZ8AEIkgJlpissyxy7LJshyHpvAD5oYK3q1hShq4SaXvUTAp09L6P6Yikj9ylNwNxH6pVtqDBiDfdygIa7gMh4pznA2qLuzz333WeByBGL0OAAnM_4twzyN_9OkpBLsG8GAtc1g=s200-no"></img>
-              <ul className="main-nav"></ul>
-            </div>
-            <div className="hero-text-box">
-              <h1 id="h1-header">Goodbye solitary.<br></br>Hello together.</h1>
-              <button id="audio" onClick={this.playJazz} className="btn btn-warning">Jazz</button><div className="space"></div>
-              <button id="audio" onClick={this.playKPOP} className="btn btn-info" href="#">DAN FAV</button><div className="space"></div>
-              <button id="audio" onClick={this.playBeethoven} className="btn btn-success" href="#">BEN FAV</button><div className="space"></div>
-              <button id="audio" onClick={this.playTotoro} className="btn btn-default" href="#">YAZ FAV</button><div className="space"></div>
-              <button id="audio" onClick={this.playRick} className="btn btn-primary" href="#">MIK FAV</button><div className="space"></div>
-            </div>
-          </nav>
-        </header>
-      );
-    }
-  }
-
   seemlessBackground() {
     if (this.state.userLoggedIn) {
       return (
@@ -277,7 +230,6 @@ class App extends React.Component {
   render() {
     return(
       <div>
-        {this.headerRender()}
         {this.filterNavbar()}
         {this.icons()}
         {this.seemlessBackground()}
