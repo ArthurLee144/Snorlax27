@@ -211,14 +211,12 @@ class App extends React.Component {
   }
 
   filterComponents() {
-    if (this.state.userLoggedIn) {
       return (
         <div>
           <Input rerender={this.rerender} />
           <DiaryList list={this.state.entries} />
         </div>
       );
-    }
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }

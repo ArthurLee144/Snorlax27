@@ -303,14 +303,12 @@ var App = function (_React$Component) {
   }, {
     key: 'filterComponents',
     value: function filterComponents() {
-      if (this.state.userLoggedIn) {
-        return React.createElement(
-          'div',
-          null,
-          React.createElement(Input, { rerender: this.rerender }),
-          React.createElement(DiaryList, { list: this.state.entries })
-        );
-      }
+      return React.createElement(
+        'div',
+        null,
+        React.createElement(Input, { rerender: this.rerender }),
+        React.createElement(DiaryList, { list: this.state.entries })
+      );
       this.handleLogin = this.handleLogin.bind(this);
       this.handleLogout = this.handleLogout.bind(this);
     }
