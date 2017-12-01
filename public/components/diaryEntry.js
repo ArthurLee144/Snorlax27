@@ -18,7 +18,8 @@ var DiaryEntry = function (_React$Component) {
 
     _this.state = {
       entries: [],
-      clicked: false
+      clicked: false,
+      sentences: [{ 'text': 'I am a dog', 'sentiment': ['confident: 0.5', 'angry: 0.2'] }, { 'text': 'I am a cat', 'sentiment': ['happy: 0.4'] }]
     };
     _this.diaryText = _this.diaryText.bind(_this);
     _this.filterComponents = _this.filterComponents.bind(_this);
@@ -95,8 +96,30 @@ var DiaryEntry = function (_React$Component) {
             postDate.toDateString(),
             ' ',
             React.createElement('br', null),
-            'General Sentiment: ',
-            this.props.item.sentiment.polarity,
+            'Your most impactful sentences:',
+            React.createElement('br', null),
+            React.createElement(
+              'div',
+              null,
+              this.state.sentences.map(function (sentence, i) {
+                return React.createElement(
+                  'div',
+                  null,
+                  React.createElement(
+                    'div',
+                    null,
+                    sentence.text
+                  ),
+                  sentence.sentiment.map(function (emotion) {
+                    return React.createElement(
+                      'div',
+                      null,
+                      emotion
+                    );
+                  })
+                );
+              })
+            ),
             React.createElement('br', null),
             React.createElement('br', null)
           )
