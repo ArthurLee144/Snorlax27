@@ -87,15 +87,23 @@ var Login = function (_React$Component) {
           "Enter a password: ",
           React.createElement("input", { id: "input", type: "text", onChange: this.handlePassword }),
           React.createElement(
-            "button",
-            { id: "submit", className: "btn btn-success", type: "submit", onClick: this.handleSubmit },
-            "Login"
+            "a",
+            { href: "#text" },
+            React.createElement(
+              "button",
+              { id: "submit", className: "btn btn-success", type: "submit", onClick: this.handleSubmit },
+              "Login"
+            )
           ),
           React.createElement("div", { className: "space" }),
           React.createElement(
-            "button",
-            { id: "submit", className: "btn btn-danger", type: "submit", onClick: this.handleCreate },
-            "Create"
+            "a",
+            { href: "#text" },
+            React.createElement(
+              "button",
+              { id: "submit", className: "btn btn-danger", type: "submit", onClick: this.handleCreate },
+              "Create"
+            )
           )
         )
       );

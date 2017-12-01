@@ -59,9 +59,9 @@ class Login extends React.Component {
       <form onSubmit={this.handleSubmit}>
         Enter a username: <input id="input" type="text" onChange={this.handleUsername}/>
         Enter a password: <input  id="input" type="text" onChange={this.handlePassword}/>
-        <button id="submit" className="btn btn-success" type="submit" onClick={this.handleSubmit}>Login</button>
+        <a href="#text"><button id="submit" className="btn btn-success" type="submit" onClick={this.handleSubmit}>Login</button></a>
         <div className="space"></div>
-        <button id="submit" className="btn btn-danger" type="submit" onClick={this.handleCreate}>Create</button>
+        <a href="#text"><button id="submit" className="btn btn-danger" type="submit" onClick={this.handleCreate}>Create</button></a>
       </form>
     </div>
     )
