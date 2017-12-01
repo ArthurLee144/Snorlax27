@@ -5,11 +5,6 @@ class App extends React.Component {
       entries: [],
       userLoggedIn: false,
       username: '',
-      music1: false,
-      music2: false,
-      music3: false,
-      music4: false,
-      music5: false,
       name: true
     }
     this.handleLogin = this.handleLogin.bind(this);
@@ -17,22 +12,20 @@ class App extends React.Component {
     this.componentDidMount = this.componentDidMount.bind(this);
     this.filterComponents = this.filterComponents.bind(this);
     this.rerender = this.rerender.bind(this);
-    this.playJazz = this.playJazz.bind(this);
-    this.playKPOP = this.playKPOP.bind(this);
-    this.playTotoro = this.playTotoro.bind(this);
-    this.playBeethoven = this.playBeethoven.bind(this);
-    this.playRick = this.playRick.bind(this);
+
   }
 
   componentDidMount() {
     var scope = this;
-    $.ajax({
-      type: 'GET',
-      url: '/entries',
-      success: function(data) {
-        scope.setState({ entries: data })
-      }
-    });
+    if(scope.state.userLoggedIn) {
+      $.ajax({
+        type: 'GET',
+        url: '/entries',
+        success: function(data) {
+          scope.setState({ entries: data })
+        }
+      });
+    }
 
     $(document).on('click', 'a[href^="#"]', function (event) {
       event.preventDefault();
@@ -43,55 +36,6 @@ class App extends React.Component {
     });
   }
 
-  playBeethoven() {
-    if (this.state.music4) {
-      $('#beethoven')[0].src = "//www.youtube.com/embed/6VE33eYgVzw?showinfo=0&controls=0";
-      this.state.music4 = false;
-    } else {
-      $('#beethoven')[0].src += "&autoplay=1";
-      this.state.music4 = true;
-    }
-  }
-
-  playRick() {
-    if (this.state.music5) {
-      $('#rick')[0].src = "//www.youtube.com/embed/dQw4w9WgXcQ?showinfo=0&controls=0";
-      this.state.music5 = false;
-    } else {
-      $('#rick')[0].src += "&autoplay=1";
-      this.state.music5 = true;
-    }
-  }
-
-  playTotoro() {
-    if (this.state.music3) {
-      $('#totoro')[0].src = "//www.youtube.com/embed/FJnrKIdIU1E?showinfo=0&controls=0";
-      this.state.music3 = false;
-    } else {
-      $('#totoro')[0].src += "&autoplay=1";
-      this.state.music3 = true;
-    }
-  }
-
-  playJazz() {
-    if (this.state.music1) {
-      $('#jazz')[0].src = "//www.youtube.com/embed/wKzMlkKNodA?showinfo=0&controls=0";
-      this.state.music1 = false;
-    } else {
-      $('#jazz')[0].src += "&autoplay=1";
-      this.state.music1 = true;
-    }
-  }
-
-  playKPOP() {
-    if (this.state.music2) {
-      $('#video')[0].src = "//www.youtube.com/embed/dh_EvwzKVoY?showinfo=0&controls=0";
-      this.state.music2 = false;
-    } else {
-      $('#video')[0].src += "&autoplay=1";
-      this.state.music2 = true;
-    }
-  }
 
   handleLogin(user) {
     var scope = this;
@@ -110,26 +54,11 @@ class App extends React.Component {
       type: 'POST',
       url: '/logout',
       success: function(data) {
-        scope.setState({userLoggedIn: false});
+        scope.setState({userLoggedIn: false, entries: []});
       }
     })
   }
 
-  randomNameOrder() {
-    var result = [];
-    var names = ['Dan', 'Benji', 'Mike', 'Yazhi'];
-
-    for (var i = 3; i >= 0; i--) {
-      var random = Math.floor(Math.random() * i);
-      if (i === 0) {
-        result.push('& ' + names[random]);
-      } else {
-        result.push(names[random]);
-      }
-      names.splice(random, 1);
-    }
-    return result.join(', ');
-  }
 
   icons() {
     return (
@@ -159,7 +88,7 @@ class App extends React.Component {
 
   filterNavbar() {
     var scope = this;
-    var message = scope.randomNameOrder();
+
     if (this.state.userLoggedIn) {
       return (
         <nav className= "navbar navbar-default navbar-fixed-bottom">
@@ -212,7 +141,7 @@ class App extends React.Component {
   filterComponents() {
       return (
         <div>
-          <Input rerender={this.rerender} />
+          <Input rerender={this.rerender} loggedIn={this.state.userLoggedIn}/>
           <DiaryList list={this.state.entries} />
         </div>
       );

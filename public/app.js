@@ -20,11 +20,6 @@ var App = function (_React$Component) {
       entries: [],
       userLoggedIn: false,
       username: '',
-      music1: false,
-      music2: false,
-      music3: false,
-      music4: false,
-      music5: false,
       name: true
     };
     _this.handleLogin = _this.handleLogin.bind(_this);
@@ -32,11 +27,7 @@ var App = function (_React$Component) {
     _this.componentDidMount = _this.componentDidMount.bind(_this);
     _this.filterComponents = _this.filterComponents.bind(_this);
     _this.rerender = _this.rerender.bind(_this);
-    _this.playJazz = _this.playJazz.bind(_this);
-    _this.playKPOP = _this.playKPOP.bind(_this);
-    _this.playTotoro = _this.playTotoro.bind(_this);
-    _this.playBeethoven = _this.playBeethoven.bind(_this);
-    _this.playRick = _this.playRick.bind(_this);
+
     return _this;
   }
 
@@ -44,13 +35,15 @@ var App = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var scope = this;
-      $.ajax({
-        type: 'GET',
-        url: '/entries',
-        success: function success(data) {
-          scope.setState({ entries: data });
-        }
-      });
+      if (scope.state.userLoggedIn) {
+        $.ajax({
+          type: 'GET',
+          url: '/entries',
+          success: function success(data) {
+            scope.setState({ entries: data });
+          }
+        });
+      }
 
       $(document).on('click', 'a[href^="#"]', function (event) {
         event.preventDefault();
@@ -59,61 +52,6 @@ var App = function (_React$Component) {
           scrollTop: $($.attr(this, 'href')).offset().top
         }, 700);
       });
-    }
-  }, {
-    key: 'playBeethoven',
-    value: function playBeethoven() {
-      if (this.state.music4) {
-        $('#beethoven')[0].src = "//www.youtube.com/embed/6VE33eYgVzw?showinfo=0&controls=0";
-        this.state.music4 = false;
-      } else {
-        $('#beethoven')[0].src += "&autoplay=1";
-        this.state.music4 = true;
-      }
-    }
-  }, {
-    key: 'playRick',
-    value: function playRick() {
-      if (this.state.music5) {
-        $('#rick')[0].src = "//www.youtube.com/embed/dQw4w9WgXcQ?showinfo=0&controls=0";
-        this.state.music5 = false;
-      } else {
-        $('#rick')[0].src += "&autoplay=1";
-        this.state.music5 = true;
-      }
-    }
-  }, {
-    key: 'playTotoro',
-    value: function playTotoro() {
-      if (this.state.music3) {
-        $('#totoro')[0].src = "//www.youtube.com/embed/FJnrKIdIU1E?showinfo=0&controls=0";
-        this.state.music3 = false;
-      } else {
-        $('#totoro')[0].src += "&autoplay=1";
-        this.state.music3 = true;
-      }
-    }
-  }, {
-    key: 'playJazz',
-    value: function playJazz() {
-      if (this.state.music1) {
-        $('#jazz')[0].src = "//www.youtube.com/embed/wKzMlkKNodA?showinfo=0&controls=0";
-        this.state.music1 = false;
-      } else {
-        $('#jazz')[0].src += "&autoplay=1";
-        this.state.music1 = true;
-      }
-    }
-  }, {
-    key: 'playKPOP',
-    value: function playKPOP() {
-      if (this.state.music2) {
-        $('#video')[0].src = "//www.youtube.com/embed/dh_EvwzKVoY?showinfo=0&controls=0";
-        this.state.music2 = false;
-      } else {
-        $('#video')[0].src += "&autoplay=1";
-        this.state.music2 = true;
-      }
     }
   }, {
     key: 'handleLogin',
@@ -135,26 +73,9 @@ var App = function (_React$Component) {
         type: 'POST',
         url: '/logout',
         success: function success(data) {
-          scope.setState({ userLoggedIn: false });
+          scope.setState({ userLoggedIn: false, entries: [] });
         }
       });
-    }
-  }, {
-    key: 'randomNameOrder',
-    value: function randomNameOrder() {
-      var result = [];
-      var names = ['Dan', 'Benji', 'Mike', 'Yazhi'];
-
-      for (var i = 3; i >= 0; i--) {
-        var random = Math.floor(Math.random() * i);
-        if (i === 0) {
-          result.push('& ' + names[random]);
-        } else {
-          result.push(names[random]);
-        }
-        names.splice(random, 1);
-      }
-      return result.join(', ');
     }
   }, {
     key: 'icons',
@@ -207,7 +128,7 @@ var App = function (_React$Component) {
     key: 'filterNavbar',
     value: function filterNavbar() {
       var scope = this;
-      var message = scope.randomNameOrder();
+
       if (this.state.userLoggedIn) {
         return React.createElement(
           'nav',
@@ -306,7 +227,7 @@ var App = function (_React$Component) {
       return React.createElement(
         'div',
         null,
-        React.createElement(Input, { rerender: this.rerender }),
+        React.createElement(Input, { rerender: this.rerender, loggedIn: this.state.userLoggedIn }),
         React.createElement(DiaryList, { list: this.state.entries })
       );
       this.handleLogin = this.handleLogin.bind(this);
