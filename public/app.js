@@ -168,7 +168,7 @@ var App = function (_React$Component) {
           React.createElement(
             'h2',
             null,
-            'Write your diary and let an AI analyze it for you.'
+            'Let an AI analyze your writing for the most effective communication.'
           )
         ),
         React.createElement(
@@ -185,7 +185,7 @@ var App = function (_React$Component) {
           React.createElement(
             'p',
             null,
-            'Aylien TextAPI will analyze the sentiment of your text (from negative to positive) - so you get a better understanding of your daily feelings!'
+            'Emotisphere will analyze the sentiment of your text - so you get a better understanding of your writing and how it can impact others.          '
           )
         )
       );

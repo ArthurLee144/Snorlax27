@@ -135,14 +135,13 @@ class App extends React.Component {
     return (
       <section>
         <div>
-          <h2>Write your diary and let an AI analyze it for you.</h2>
+          <h2>Let an AI analyze your writing for the most effective communication.</h2>
         </div>
         <div className="ionicon">
           <i className="ion-ios-glasses-outline icon-big"></i>
           <h3>Natural Language API</h3><br></br><br></br>
           <p>
-            Aylien TextAPI will analyze the sentiment of your text (from negative to positive) - so you get a better understanding of your daily feelings!
-          </p>
+            Emotisphere will analyze the sentiment of your text - so you get a better understanding of your writing and how it can impact others.          </p>
         </div>
       </section>
     )
