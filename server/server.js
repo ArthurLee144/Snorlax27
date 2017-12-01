@@ -7,6 +7,7 @@ var express = require('express');
 var app = express();
 var request = require('request');
 var $ = require('jquery');
+var watson = require('./watsonServer.js');
 var AYLIENTextAPI = require('aylien_textapi');
 
 //These are the api keys and login. They may expire and can be generated for free on Aylien's website :)
@@ -96,6 +97,7 @@ app.get('/entries', function(req, res) {
 
 //HANDLE DIARY POSTS
 app.post('/entries', function(req, res) {
+  watson.analyzeTone(req.body.text);
   console.log('POST REQ SESSION USER', req.session.user);
   addDiaryPost(res, req, req.body.title, req.body.text);
 });
@@ -118,8 +120,14 @@ var addDiaryPost = function(res, req, title, text) {
       res.status(200).end();
     });
   });
+
 }
 
+//HANDLE TONE ANALYSIS
+app.get('/tone', function(req,res) {
+  console.log('in server js for watson');
+  watson.analyzeTone(req.body);
+});
 
 
 
