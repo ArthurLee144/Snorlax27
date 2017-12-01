@@ -1,7 +1,7 @@
 var watsonAPI = require('watson-developer-cloud/tone-analyzer/v3');
 
 
-function analyzeTone(textInput, cabllack) {
+function analyzeTone(textInput, callback) {
 	var watson = new watsonAPI({
 		username: "3d938769-5ffd-42a8-9f4d-ba10ae183b59",
 	  password: "sPm4qUZAK6Kr",

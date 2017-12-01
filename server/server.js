@@ -97,10 +97,7 @@ app.get('/entries', function(req, res) {
 
 //HANDLE DIARY POSTS
 app.post('/entries', function(req, res) {
-  var tone;
-  watson.analyzeTone(req.body.text, function() {
-    console.log(res);
-  });
+  watson.analyzeTone(req.body.text);
   console.log('POST REQ SESSION USER', req.session.user);
   addDiaryPost(res, req, req.body.title, req.body.text);
 });
