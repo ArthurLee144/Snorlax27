@@ -99,15 +99,17 @@ app.get('/entries', function(req, res) {
 //HANDLE DIARY POSTS
 app.post('/entries', function(req, res) {
 
-  // watson.analyzeTone(req.body.text, function(err, data) {
-  //   if (err) {
-  //     console.log(error)
-  //   }
-  //   console.log('got data', data)
-  //   console.log(watsonHelpers.overallSentimentAnalysis(data, function(err, scrub){
-  //     console.log(scrub);
-  //   }));
-  // });
+  watson.analyzeTone(req.body.text, function(err, data) {
+    if (err) {
+      console.log(error)
+    }
+    watsonHelpers.overallSentimentAnalysis(data, function(err, overallData) {
+      console.log('clean overall====>', overallData);
+      watsonHelpers.sentenceLevelAnalysis(data, function(err, sentences) {
+        console.log('clean sentences====>', sentences);
+      })
+    });
+  });
 
   console.log('POST REQ SESSION USER', req.session.user);
   addDiaryPost(res, req, req.body.title, req.body.text);

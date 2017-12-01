@@ -3,9 +3,9 @@ var server = require('./server.js');
 module.exports = {
 
   overallSentimentAnalysis: function(rawData, callback) {
-    console.log('rawData', rawData)
-    var sentiments = rawData.document_tone.tone_categories[0].tones
-    callback(sentiments);
+    var data = JSON.parse(rawData);
+    var sentiments = data.document_tone.tones
+    callback(null, sentiments, rawData);
     },
 
   sentenceLevelAnalysis: function(rawData, callback) {
@@ -19,14 +19,14 @@ module.exports = {
     var extractSentences = data => {
       var sentences = data.sentences_tone
         .map(sentence => {
-          sentence.allSentiments = sentence.tone_categories[0].tones
+          sentence.allSentiments = sentence.tones
             .sort((a,b) => {
               return b.score - a.score
             })
             .filter(sentimentObj =>
               sentimentObj.score >= scoreThreshold
             )
-          delete sentence.tone_categories;
+          delete sentence.tones;
           sentence.allSentiments = setLength(sentence.allSentiments, maxSentiments);
           return sentence;
         });
@@ -36,7 +36,7 @@ module.exports = {
   var setLength = (array, max) => {
     return array.length > max ? array.slice(0, max) : array
   }
-      callback(extractSentences(rawData))
+      callback(null, extractSentences(JSON.parse(rawData)));
   },
 
 }
