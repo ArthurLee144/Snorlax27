@@ -13,7 +13,8 @@ function analyzeTone(textInput, callback) {
 			if (err) {
 				console.log('watson err', err);
 			} else {
-				callback(JSON.stringify(tone,null,6));
+				console.log('watson API was called!!!!')
+				callback(null, JSON.stringify(tone,null,6));
 			}
 		}
 	);
