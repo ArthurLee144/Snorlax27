@@ -5,7 +5,8 @@ class Input extends React.Component {
       entries: [],
       newestTitle: {},
       newestPost: {},
-      username: ''
+      username: '',
+
     }
     this.handleTitle = this.handleTitle.bind(this);
     this.handlePost = this.handlePost.bind(this);
@@ -23,26 +24,40 @@ class Input extends React.Component {
   handleSubmit(event) {
     var context = this;
     event.preventDefault();
-    $.ajax({
-      type: 'POST',
-      url: '/entries',
-      data: {
-        title: this.state.newestTitle,
-        text: this.state.newestPost,
-        username: this.state.username
-      },
-      success: function() {
-        console.log('line 37 input.jsx post success')
+
+    if (context.props.loggedIn) {
+      $.ajax({
+        type: 'POST',
+        url: '/entries',
+        data: {
+          title: this.state.newestTitle,
+          text: this.state.newestPost,
+          username: this.state.username
+        },
+        success: function() {
+          console.log('line 37 input.jsx post success')
+        }
+      }).then(function() {
+        context.props.rerender();
+      });
+    } else {
+      $.ajax({
+        type: 'GET',
+        url: '/guest',
+        data: {
+          text: this.state.newestPost,
+        },
+        success: function() {
+          context.setState()
+        }
+      })
       }
-    }).then(function() {
-      context.props.rerender();
-    });
   }
 
   render() {
     return(
       <form id="text" onSubmit={this.handleSubmit}>
-        <h2 id="hello"><span id="enter">Write</span> a diary entry</h2><br></br>
+        <h2 id="hello">Write text to be analyzed</h2>
         <input className="form-control" placeholder="Enter title of your super awesome diary entry" name="title" onChange={this.handleTitle}></input><br></br>
         <textarea id="textarea" type='text' name="entry" onChange={this.handlePost} /><br></br>
         <button type="submit" className="btn btn-primary" value="Submit" onClick={this.handleSubmit}>Send</button>

@@ -21,6 +21,7 @@ var Input = function (_React$Component) {
       newestTitle: {},
       newestPost: {},
       username: ''
+
     };
     _this.handleTitle = _this.handleTitle.bind(_this);
     _this.handlePost = _this.handlePost.bind(_this);
@@ -43,20 +44,34 @@ var Input = function (_React$Component) {
     value: function handleSubmit(event) {
       var context = this;
       event.preventDefault();
-      $.ajax({
-        type: 'POST',
-        url: '/entries',
-        data: {
-          title: this.state.newestTitle,
-          text: this.state.newestPost,
-          username: this.state.username
-        },
-        success: function success() {
-          console.log('line 37 input.jsx post success');
-        }
-      }).then(function () {
-        context.props.rerender();
-      });
+
+      if (context.props.loggedIn) {
+        $.ajax({
+          type: 'POST',
+          url: '/entries',
+          data: {
+            title: this.state.newestTitle,
+            text: this.state.newestPost,
+            username: this.state.username
+          },
+          success: function success() {
+            console.log('line 37 input.jsx post success');
+          }
+        }).then(function () {
+          context.props.rerender();
+        });
+      } else {
+        $.ajax({
+          type: 'GET',
+          url: '/guest',
+          data: {
+            text: this.state.newestPost
+          },
+          success: function success() {
+            context.setState();
+          }
+        });
+      }
     }
   }, {
     key: 'render',
@@ -67,14 +82,8 @@ var Input = function (_React$Component) {
         React.createElement(
           'h2',
           { id: 'hello' },
-          React.createElement(
-            'span',
-            { id: 'enter' },
-            'Write'
-          ),
-          ' a diary entry'
+          'Write text to be analyzed'
         ),
-        React.createElement('br', null),
         React.createElement('input', { className: 'form-control', placeholder: 'Enter title of your super awesome diary entry', name: 'title', onChange: this.handleTitle }),
         React.createElement('br', null),
         React.createElement('textarea', { id: 'textarea', type: 'text', name: 'entry', onChange: this.handlePost }),

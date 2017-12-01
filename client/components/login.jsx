@@ -12,6 +12,7 @@ class Login extends React.Component {
   }
 
   handleSubmit(event) {
+    console.log('handleSubmit login called')
     var scope = this;
     event.preventDefault();
     $.ajax({
