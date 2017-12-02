@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 var mongoClient = require('mongodb').MongoClient;
 
 //Connects to Mlabs mongodb. Will need to make a new one.
-mongoose.connect('mongodb://admin:admin@ds127436.mlab.com:27436/heroku_l6l2q74f'); //
+
+mongoose.connect('mongodb://admin:admin@ds127436.mlab.com:27436/heroku_l6l2q74f');
 
 var UserSchema = mongoose.Schema({
   username: String,
@@ -32,8 +33,11 @@ exports.clearDB = function(callback) {
       }
       callback(err, data);
     })
-
   },
-// module.exports.clearDB = clearDB;
+
+
+
+
+
 module.exports.User = User;
 module.exports.Diary = Diary;

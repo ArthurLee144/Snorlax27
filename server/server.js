@@ -9,6 +9,7 @@ var request = require('request');
 var $ = require('jquery');
 var watson = require('./watsonServer.js');
 var AYLIENTextAPI = require('aylien_textapi');
+var aylien = require('./aylienServer.js');
 var watsonHelpers = require('./watsonDataHelper');
 
 //These are the api keys and login. They may expire and can be generated for free on Aylien's website :)
@@ -62,7 +63,6 @@ var createSession = function(req, res, newUser) {
   })
 }
 
-
 //HANDLE LOGIN
 app.post('/login', function(req, res) {
   db.User.findOne({
@@ -84,8 +84,21 @@ app.post('/login', function(req, res) {
 
 //GUEST GET
 app.get('/guest', function(req, res) {
-
-})
+  aylien.getAylienData('hello', function(err, aylienData) {
+    if (err){
+      console.log(err)
+    }
+    watsonHelpers.getAllWatsonData('hello. sonny', function(err, watsonData) {
+      if (err) {
+        console.log(err)
+      }
+      aylienData.watsonData = watsonData;
+      console.log(aylienData);
+      res.send(aylienData);
+      res.end();
+    })
+  })
+});
 
 //INITIAL POST GET
 app.get('/entries', function(req, res) {
@@ -93,7 +106,7 @@ app.get('/entries', function(req, res) {
     if (error) {
       console.log('error line 12 server.js', error);
     } else {
-      console.log('success 14 get request');
+      console.log('success 14 get request', data);
       data.reverse();
       res.send(data);
       res.end();
@@ -103,7 +116,6 @@ app.get('/entries', function(req, res) {
 
 //HANDLE DIARY POSTS
 app.post('/entries', function(req, res) {
-
   watson.analyzeTone(req.body.text, function(err, watsonData) {
     var watsonProcessed = {
       overallData: [],
