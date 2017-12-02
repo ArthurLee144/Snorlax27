@@ -9,6 +9,7 @@ var request = require('request');
 var $ = require('jquery');
 var watson = require('./watsonServer.js');
 var AYLIENTextAPI = require('aylien_textapi');
+var aylien = require('./aylienServer.js');
 var watsonHelpers = require('./watsonDataHelper');
 
 //These are the api keys and login. They may expire and can be generated for free on Aylien's website :)
@@ -84,7 +85,13 @@ app.post('/login', function(req, res) {
 
 //GUEST GET
 app.get('/guest', function(req, res) {
-
+  console.log('got request');
+  aylien.getAylienData('hello', function(err, data) {
+    if (err){
+      console.log(err)
+    }
+    console.log('data from aylien', data);
+  })
 })
 
 //INITIAL POST GET

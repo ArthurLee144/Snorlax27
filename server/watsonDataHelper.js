@@ -2,6 +2,10 @@ var server = require('./server.js');
 
 module.exports = {
 
+  getAllWatsonData: function(rawData) {
+    //place hodler
+  },
+
   overallSentimentAnalysis: function(rawData, callback) {
     var sentiments = rawData.document_tone.tones
     console.log('sens', sentiments)
