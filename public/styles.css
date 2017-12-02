@@ -312,6 +312,7 @@ form {
 
 #textarea {
   color: black;
+  width: 690px;
 }
 
 .entryInfo {
@@ -441,6 +442,23 @@ font-family: 'Noto Serif', serif; */
 .tab {
   margin-left: 20px;
   color: white;
+}
+
+#container {
+  min-width: 400px;
+  max-width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  display: inline-block;
+  float: right;
+  margin-top: 180px;
+  margin-right: 80px;
+}
+
+#inputdisplay {
+  display: inline-block;
+  width: 800px;
+  margin-right: 0px;
 }
 
 

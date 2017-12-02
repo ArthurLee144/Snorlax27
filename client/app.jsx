@@ -5,7 +5,8 @@ class App extends React.Component {
       entries: [],
       userLoggedIn: false,
       username: '',
-      name: true
+      name: true,
+      sentences: []
     }
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
@@ -124,24 +125,44 @@ class App extends React.Component {
   //Display diary in list after post
   rerender() {
     var scope = this;
-    $.ajax({
-      type: 'GET',
-      url: '/entries',
-      success: function(data) {
-        scope.setState({ entries: data })
-      },
-      error: function(err) {
-        console.log('rerender error', err);
-      }
-    });
+    if (scope.state.userLoggedIn) {
+      $.ajax({
+        type: 'GET',
+        url: '/entries',
+        success: function(data) {
+          scope.setState({ entries: data })
+        },
+        error: function(err) {
+          console.log('rerender error', err);
+        }
+      });
+    } else {
+        $.ajax({
+          type: 'GET',
+          url: '/guest',
+          data: {
+            text: this.state.newestPost,
+          },
+          success: function(data) {
+            scope.setState({sentences: data})
+          }
+        })
+
+
+    }
   }
 
   filterComponents() {
       return (
         <div>
+          <span>
           <Input rerender={this.rerender} loggedIn={this.state.userLoggedIn}/>
+          <div id="container"></div>
+
+          </span>
           <DiaryList list={this.state.entries} />
-        </div>
+          </div>
+
       );
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
@@ -154,6 +175,7 @@ class App extends React.Component {
         {this.icons()}
         {this.seemlessBackground()}
         {this.filterComponents()}
+
       </div>
     )
   }

@@ -17,7 +17,6 @@ var Input = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Input.__proto__ || Object.getPrototypeOf(Input)).call(this, props));
 
     _this.state = {
-      entries: [],
       newestTitle: {},
       newestPost: {},
       username: ''
@@ -45,53 +44,44 @@ var Input = function (_React$Component) {
       var context = this;
       event.preventDefault();
 
-      if (context.props.loggedIn) {
-        $.ajax({
-          type: 'POST',
-          url: '/entries',
-          data: {
-            title: this.state.newestTitle,
-            text: this.state.newestPost,
-            username: this.state.username
-          },
-          success: function success() {
-            console.log('line 37 input.jsx post success');
-          }
-        }).then(function () {
-          context.props.rerender();
-        });
-      } else {
-        $.ajax({
-          type: 'GET',
-          url: '/guest',
-          data: {
-            text: this.state.newestPost
-          },
-          success: function success() {
-            context.setState();
-          }
-        });
-      }
+      $.ajax({
+        type: 'POST',
+        url: '/entries',
+        data: {
+          title: this.state.newestTitle,
+          text: this.state.newestPost,
+          username: this.state.username
+        },
+        success: function success() {
+          console.log('line 37 input.jsx post success');
+        }
+      }).then(function () {
+        context.props.rerender();
+      });
     }
   }, {
     key: 'render',
     value: function render() {
       return React.createElement(
-        'form',
-        { id: 'text', onSubmit: this.handleSubmit },
+        'div',
+        { id: 'inputdisplay' },
         React.createElement(
-          'h2',
-          { id: 'hello' },
-          'Write text to be analyzed'
-        ),
-        React.createElement('input', { className: 'form-control', placeholder: 'Enter title of your super awesome diary entry', name: 'title', onChange: this.handleTitle }),
-        React.createElement('br', null),
-        React.createElement('textarea', { id: 'textarea', type: 'text', name: 'entry', onChange: this.handlePost }),
-        React.createElement('br', null),
-        React.createElement(
-          'button',
-          { type: 'submit', className: 'btn btn-primary', value: 'Submit', onClick: this.handleSubmit },
-          'Send'
+          'form',
+          { id: 'text', onSubmit: this.handleSubmit },
+          React.createElement(
+            'h2',
+            { id: 'hello' },
+            'Write text to be analyzed'
+          ),
+          React.createElement('input', { className: 'form-control', placeholder: 'Enter title of your super awesome diary entry', name: 'title', onChange: this.handleTitle }),
+          React.createElement('br', null),
+          React.createElement('textarea', { id: 'textarea', type: 'text', name: 'entry', onChange: this.handlePost }),
+          React.createElement('br', null),
+          React.createElement(
+            'button',
+            { type: 'submit', className: 'btn btn-primary', value: 'Submit', onClick: this.handleSubmit },
+            'Send'
+          )
         )
       );
     }

@@ -20,7 +20,8 @@ var App = function (_React$Component) {
       entries: [],
       userLoggedIn: false,
       username: '',
-      name: true
+      name: true,
+      sentences: []
     };
     _this.handleLogin = _this.handleLogin.bind(_this);
     _this.handleLogout = _this.handleLogout.bind(_this);
@@ -208,16 +209,29 @@ var App = function (_React$Component) {
     key: 'rerender',
     value: function rerender() {
       var scope = this;
-      $.ajax({
-        type: 'GET',
-        url: '/entries',
-        success: function success(data) {
-          scope.setState({ entries: data });
-        },
-        error: function error(err) {
-          console.log('rerender error', err);
-        }
-      });
+      if (scope.state.userLoggedIn) {
+        $.ajax({
+          type: 'GET',
+          url: '/entries',
+          success: function success(data) {
+            scope.setState({ entries: data });
+          },
+          error: function error(err) {
+            console.log('rerender error', err);
+          }
+        });
+      } else {
+        $.ajax({
+          type: 'GET',
+          url: '/guest',
+          data: {
+            text: this.state.newestPost
+          },
+          success: function success(data) {
+            scope.setState({ sentences: data });
+          }
+        });
+      }
     }
   }, {
     key: 'filterComponents',
@@ -225,7 +239,12 @@ var App = function (_React$Component) {
       return React.createElement(
         'div',
         null,
-        React.createElement(Input, { rerender: this.rerender, loggedIn: this.state.userLoggedIn }),
+        React.createElement(
+          'span',
+          null,
+          React.createElement(Input, { rerender: this.rerender, loggedIn: this.state.userLoggedIn }),
+          React.createElement('div', { id: 'container' })
+        ),
         React.createElement(DiaryList, { list: this.state.entries })
       );
       this.handleLogin = this.handleLogin.bind(this);

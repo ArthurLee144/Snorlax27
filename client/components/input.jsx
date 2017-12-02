@@ -2,16 +2,18 @@ class Input extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      entries: [],
       newestTitle: {},
       newestPost: {},
       username: '',
+
 
     }
     this.handleTitle = this.handleTitle.bind(this);
     this.handlePost = this.handlePost.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+
 
   handlePost(event) {
     this.setState({newestPost: event.target.value})
@@ -25,7 +27,7 @@ class Input extends React.Component {
     var context = this;
     event.preventDefault();
 
-    if (context.props.loggedIn) {
+
       $.ajax({
         type: 'POST',
         url: '/entries',
@@ -40,28 +42,20 @@ class Input extends React.Component {
       }).then(function() {
         context.props.rerender();
       });
-    } else {
-      $.ajax({
-        type: 'GET',
-        url: '/guest',
-        data: {
-          text: this.state.newestPost,
-        },
-        success: function() {
-          context.setState()
-        }
-      })
-      }
+
   }
 
   render() {
     return(
+      <div id="inputdisplay">
       <form id="text" onSubmit={this.handleSubmit}>
         <h2 id="hello">Write text to be analyzed</h2>
         <input className="form-control" placeholder="Enter title of your super awesome diary entry" name="title" onChange={this.handleTitle}></input><br></br>
         <textarea id="textarea" type='text' name="entry" onChange={this.handlePost} /><br></br>
         <button type="submit" className="btn btn-primary" value="Submit" onClick={this.handleSubmit}>Send</button>
       </form>
+      </div>
+
     )
   }
 }
