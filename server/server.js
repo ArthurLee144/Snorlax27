@@ -90,7 +90,6 @@ app.get('/entries', function(req, res) {
     } else {
       console.log('success 14 get request');
       data.reverse();
-      console.log('=======', data)
       res.send(data);
       res.end();
     }
@@ -109,13 +108,12 @@ app.post('/entries', function(req, res) {
     if (err) {
       console.log(error)
     }
-      watsonHelpers.overallSentimentAnalysis(watsonData, function(err, overallData) {
+      watsonHelpers.overallSentimentAnalysis(rawData, function(err, overallData) {
         watsonProcessed.overallData = overallData;
         if (rawData.sentences_tone) {
-          watsonHelpers.sentenceLevelAnalysis(watsonData, function(err, sentences) {
+          watsonHelpers.sentenceLevelAnalysis(rawData, function(err, sentences) {
             console.log('clean sentences====>', sentences);
             watsonProcessed.sentences = sentences;
-
           })
         }
       });

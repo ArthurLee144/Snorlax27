@@ -2,17 +2,8 @@ var server = require('./server.js');
 
 module.exports = {
 
-  // parseReturnFromDB: function(queryObj, callback) {
-  //   console.log('============', queryObj);
-  //   var scrubbedData = {
-  //   }
-  //   queryObj.map(el => console.log('!!!!!', JSON.parse(el.watsonData)))
-  //   return
-  // },
-
   overallSentimentAnalysis: function(rawData, callback) {
-    var data = JSON.parse(rawData);
-    var sentiments = data.document_tone.tones
+    var sentiments = rawData.document_tone.tones
     callback(null, sentiments, rawData);
     },
 
@@ -44,7 +35,7 @@ module.exports = {
   var setLength = (array, max) => {
     return array.length > max ? array.slice(0, max) : array
   }
-      callback(null, extractSentences(JSON.parse(rawData)));
+      callback(null, extractSentences(rawData));
   },
 
 }
