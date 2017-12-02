@@ -5,6 +5,8 @@ class Input extends React.Component {
       newestTitle: {},
       newestPost: {},
       username: '',
+      sentences: []
+
 
 
     }
@@ -47,15 +49,37 @@ class Input extends React.Component {
 
   render() {
     return(
+      <div>
+      <span><h2 id="hello">Write text to be analyzed</h2><h2 id="hello">Results</h2></span>
       <div id="inputdisplay">
       <form id="text" onSubmit={this.handleSubmit}>
-        <h2 id="hello">Write text to be analyzed</h2>
+
         <input className="form-control" placeholder="Enter title of your super awesome diary entry" name="title" onChange={this.handleTitle}></input><br></br>
         <textarea id="textarea" type='text' name="entry" onChange={this.handlePost} /><br></br>
         <button type="submit" className="btn btn-submit" value="Submit" onClick={this.handleSubmit}>Analyze</button>
       </form>
       </div>
 
+      <div id="results">
+          <div id="container">
+
+          </div>
+          </div>
+
+      <div id="impactful">
+      Your most impactful sentences:<br/>
+          <div>
+          {this.state.sentences.map((sentence, i) =>
+            <div>
+            <div>{sentence.text}</div>
+            {sentence.sentiment.map((emotion) =>
+              <div>{emotion}</div>
+              )}
+            </div>
+            )}
+          </div><br/>
+      </div>
+      </div>
     )
   }
 }

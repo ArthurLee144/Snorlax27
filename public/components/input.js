@@ -19,7 +19,8 @@ var Input = function (_React$Component) {
     _this.state = {
       newestTitle: {},
       newestPost: {},
-      username: ''
+      username: '',
+      sentences: []
 
     };
     _this.handleTitle = _this.handleTitle.bind(_this);
@@ -64,24 +65,71 @@ var Input = function (_React$Component) {
     value: function render() {
       return React.createElement(
         'div',
-        { id: 'inputdisplay' },
+        null,
         React.createElement(
-          'form',
-          { id: 'text', onSubmit: this.handleSubmit },
+          'span',
+          null,
           React.createElement(
             'h2',
             { id: 'hello' },
             'Write text to be analyzed'
           ),
-          React.createElement('input', { className: 'form-control', placeholder: 'Enter title of your super awesome diary entry', name: 'title', onChange: this.handleTitle }),
-          React.createElement('br', null),
-          React.createElement('textarea', { id: 'textarea', type: 'text', name: 'entry', onChange: this.handlePost }),
+          React.createElement(
+            'h2',
+            { id: 'hello' },
+            'Results'
+          )
+        ),
+        React.createElement(
+          'div',
+          { id: 'inputdisplay' },
+          React.createElement(
+            'form',
+            { id: 'text', onSubmit: this.handleSubmit },
+            React.createElement('input', { className: 'form-control', placeholder: 'Enter title of your super awesome diary entry', name: 'title', onChange: this.handleTitle }),
+            React.createElement('br', null),
+            React.createElement('textarea', { id: 'textarea', type: 'text', name: 'entry', onChange: this.handlePost }),
+            React.createElement('br', null),
+            React.createElement(
+              'button',
+              { type: 'submit', className: 'btn btn-submit', value: 'Submit', onClick: this.handleSubmit },
+              'Analyze'
+            )
+          )
+        ),
+        React.createElement(
+          'div',
+          { id: 'results' },
+          React.createElement('div', { id: 'container' })
+        ),
+        React.createElement(
+          'div',
+          { id: 'impactful' },
+          'Your most impactful sentences:',
           React.createElement('br', null),
           React.createElement(
-            'button',
-            { type: 'submit', className: 'btn btn-submit', value: 'Submit', onClick: this.handleSubmit },
-            'Analyze'
-          )
+            'div',
+            null,
+            this.state.sentences.map(function (sentence, i) {
+              return React.createElement(
+                'div',
+                null,
+                React.createElement(
+                  'div',
+                  null,
+                  sentence.text
+                ),
+                sentence.sentiment.map(function (emotion) {
+                  return React.createElement(
+                    'div',
+                    null,
+                    emotion
+                  );
+                })
+              );
+            })
+          ),
+          React.createElement('br', null)
         )
       );
     }

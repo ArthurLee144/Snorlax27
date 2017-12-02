@@ -240,16 +240,6 @@ var App = function (_React$Component) {
         'div',
         null,
         React.createElement(Input, { rerender: this.rerender, loggedIn: this.state.userLoggedIn }),
-        React.createElement(
-          'div',
-          { id: 'results' },
-          React.createElement(
-            'h2',
-            { id: 'hello' },
-            'Results'
-          ),
-          React.createElement('div', { id: 'container' })
-        ),
         React.createElement(DiaryList, { list: this.state.entries })
       );
       this.handleLogin = this.handleLogin.bind(this);
