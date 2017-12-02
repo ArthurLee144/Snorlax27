@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var mongoClient = require('mongodb').MongoClient;
 
 //Connects to Mlabs mongodb. Will need to make a new one.
-mongoose.connect('mongodb://admin:admin@ds125556.mlab.com:25556/heroku_65bb1mgp'); //
+mongoose.connect('mongodb://admin:admin@ds125906.mlab.com:25906/heroku_kj0hrsb3'); //
 
 var UserSchema = mongoose.Schema({
   username: String,
