@@ -70,13 +70,7 @@ class DiaryEntry extends React.Component {
             {sentence.sentiment.map((emotion) =>
               <div>{emotion}</div>
               )}
-
             </div>
-
-
-
-
-
             )}</div><br/>
           <br/>
           </div>

@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx babel client --watch --out-dir public --presets=es2015,react",
-    "start": "nodemon --inspect server/server.js",
-    "clear": "node clearData.js"
+    "start": "node --inspect server/server.js"
   },
   "engines": {
     "node": "6.11.5"
@@ -28,6 +27,7 @@
     "aylien_textapi": "^0.6.0",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.17.0",
+    "chart.js": "^2.7.1",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "express-sessions": "^1.0.6",
