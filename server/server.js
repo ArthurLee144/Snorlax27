@@ -82,6 +82,11 @@ app.post('/login', function(req, res) {
   });
 });
 
+//GUEST GET
+app.get('/guest', function(req, res) {
+
+})
+
 //INITIAL POST GET
 app.get('/entries', function(req, res) {
   db.Diary.find({username: req.session.user}, function(error, data) {
