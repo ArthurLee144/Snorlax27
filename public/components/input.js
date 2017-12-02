@@ -79,8 +79,8 @@ var Input = function (_React$Component) {
           React.createElement('br', null),
           React.createElement(
             'button',
-            { type: 'submit', className: 'btn btn-primary', value: 'Submit', onClick: this.handleSubmit },
-            'Send'
+            { type: 'submit', className: 'btn btn-submit', value: 'Submit', onClick: this.handleSubmit },
+            'Analyze'
           )
         )
       );

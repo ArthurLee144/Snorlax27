@@ -304,7 +304,7 @@ form {
 
 #hello {
   border: solid;
-  border-width: 10px;
+  border-width: 5px;
   border-color: lightblue;
 
   width: 100%;
@@ -312,7 +312,7 @@ form {
 
 #textarea {
   color: black;
-  width: 690px;
+  width: 100%;
 }
 
 .entryInfo {
@@ -445,20 +445,32 @@ font-family: 'Noto Serif', serif; */
 }
 
 #container {
-  min-width: 400px;
-  max-width: 400px;
+  min-width: 100px;
+  max-width: 600px;
+  width:580px;
   height: 400px;
   margin: 0 auto;
   display: inline-block;
   float: right;
   margin-top: 180px;
-  margin-right: 80px;
+  margin-right: 10px;
 }
 
 #inputdisplay {
   display: inline-block;
-  width: 800px;
+  width: 50%;
   margin-right: 0px;
+}
+
+.btn-submit {
+  margin-top: 5px;
+  display: inline-block;
+  /*margin-left: 80%;*/
+  float: right;
+  font-weight: 300;
+  text-decoration: none;
+  color: white;
+  background-color: #ce8b0e;
 }
 
 

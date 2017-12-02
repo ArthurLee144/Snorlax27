@@ -52,7 +52,7 @@ class Input extends React.Component {
         <h2 id="hello">Write text to be analyzed</h2>
         <input className="form-control" placeholder="Enter title of your super awesome diary entry" name="title" onChange={this.handleTitle}></input><br></br>
         <textarea id="textarea" type='text' name="entry" onChange={this.handlePost} /><br></br>
-        <button type="submit" className="btn btn-primary" value="Submit" onClick={this.handleSubmit}>Send</button>
+        <button type="submit" className="btn btn-submit" value="Submit" onClick={this.handleSubmit}>Analyze</button>
       </form>
       </div>
 
