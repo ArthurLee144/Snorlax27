@@ -14,7 +14,7 @@ var DiarySchema = mongoose.Schema({
   text: String,
   sentiment: Object,
   username: String,
-  watsonData: String,
+  watsonData: Object,
   time: {
     type: Date,
     default: Date.now

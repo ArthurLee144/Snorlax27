@@ -2,6 +2,14 @@ var server = require('./server.js');
 
 module.exports = {
 
+  // parseReturnFromDB: function(queryObj, callback) {
+  //   console.log('============', queryObj);
+  //   var scrubbedData = {
+  //   }
+  //   queryObj.map(el => console.log('!!!!!', JSON.parse(el.watsonData)))
+  //   return
+  // },
+
   overallSentimentAnalysis: function(rawData, callback) {
     var data = JSON.parse(rawData);
     var sentiments = data.document_tone.tones

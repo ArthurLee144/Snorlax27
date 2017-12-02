@@ -90,6 +90,7 @@ app.get('/entries', function(req, res) {
     } else {
       console.log('success 14 get request');
       data.reverse();
+      console.log('=======', data)
       res.send(data);
       res.end();
     }
@@ -100,18 +101,26 @@ app.get('/entries', function(req, res) {
 app.post('/entries', function(req, res) {
 
   watson.analyzeTone(req.body.text, function(err, watsonData) {
+    var watsonProcessed = {
+      overallData: [],
+      sentences: []
+    }
+    var rawData = JSON.parse(watsonData);
     if (err) {
       console.log(error)
     }
-//relocate to get request
-    // watsonHelpers.overallSentimentAnalysis(data, function(err, overallData) {
-    //   console.log('clean overall====>', overallData);
-    //   watsonHelpers.sentenceLevelAnalysis(data, function(err, sentences) {
-    //     console.log('clean sentences====>', sentences);
-    //   })
-    // });
+      watsonHelpers.overallSentimentAnalysis(watsonData, function(err, overallData) {
+        watsonProcessed.overallData = overallData;
+        if (rawData.sentences_tone) {
+          watsonHelpers.sentenceLevelAnalysis(watsonData, function(err, sentences) {
+            console.log('clean sentences====>', sentences);
+            watsonProcessed.sentences = sentences;
+
+          })
+        }
+      });
     console.log('POST REQ SESSION USER', req.session.user);
-    addDiaryPost(res, req, req.body.title, req.body.text, watsonData);
+    addDiaryPost(res, req, req.body.title, req.body.text, watsonProcessed);
   });
 });
 
