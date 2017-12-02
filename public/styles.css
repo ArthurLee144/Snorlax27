@@ -277,16 +277,16 @@ h3 {
 
 textarea {
   position: relative;
-  background-image: linear-gradient(rgba(0,0,0, 0.5), rgba(0,0,0, 0.5)), url("https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=2100&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D");
-  height: 550px;
-  width: 100%;
+  /*background-image: linear-gradient(rgba(0,0,0, 0.5), rgba(0,0,0, 0.5)), url("https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=2100&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D");*/
+  height: 400px;
+  width: 50%;
   background-size: cover;
   background-position: center;
-  background-color: lightblue;
+
   resize: none;
   font-size: 12.7px;
   font-weight: bold;
-  color: lightgreen;
+  color: black;
 }
 
 input {
@@ -297,21 +297,23 @@ input {
 }
 
 form {
-  color: white;
+  color: black;
   font-weight: bold;
   margin: 7%;
 }
 
 #hello {
   border: solid;
-  border-width: 10px;
+  border-width: 5px;
   border-color: lightblue;
-  padding-bottom: 3%;
+
+
   width: 100%;
 }
 
 #textarea {
-  color: white;
+  color: black;
+  width: 100%;
 }
 
 .entryInfo {
@@ -324,8 +326,7 @@ form {
 
 #text {
   color: black;
-  margin-left: 25%;
-  margin-right: 25%;
+
 }
 
 h2 {
@@ -441,6 +442,48 @@ font-family: 'Noto Serif', serif; */
 
 .tab {
   margin-left: 20px;
+  color: white;
+}
+
+#container {
+  min-width: 100px;
+  max-width: 600px;
+  width:100%;
+  height: 400px;
+  margin-top:100px;
+  display: inline-block;
+
+  margin-top: 30px;
+
+
+  vertical-align: top;
+}
+
+#inputdisplay {
+  display: inline-block;
+  width: 50%;
+  margin-right: 0px;
+}
+
+.btn-submit {
+  margin-top: 5px;
+  display: inline-block;
+  /*margin-left: 80%;*/
+  float: right;
+  font-weight: 300;
+  text-decoration: none;
+  color: white;
+  background-color: #ce8b0e;
+}
+
+#results {
+  margin-top: 24px;
+
+
+  display: inline-block;
+  width: 50%;
+  vertical-align: top;
+
 }
 
 

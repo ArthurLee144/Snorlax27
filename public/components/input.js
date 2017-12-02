@@ -17,10 +17,10 @@ var Input = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Input.__proto__ || Object.getPrototypeOf(Input)).call(this, props));
 
     _this.state = {
-      entries: [],
       newestTitle: {},
       newestPost: {},
       username: ''
+
     };
     _this.handleTitle = _this.handleTitle.bind(_this);
     _this.handlePost = _this.handlePost.bind(_this);
@@ -43,6 +43,7 @@ var Input = function (_React$Component) {
     value: function handleSubmit(event) {
       var context = this;
       event.preventDefault();
+
       $.ajax({
         type: 'POST',
         url: '/entries',
@@ -62,27 +63,25 @@ var Input = function (_React$Component) {
     key: 'render',
     value: function render() {
       return React.createElement(
-        'form',
-        { id: 'text', onSubmit: this.handleSubmit },
+        'div',
+        { id: 'inputdisplay' },
         React.createElement(
-          'h2',
-          { id: 'hello' },
+          'form',
+          { id: 'text', onSubmit: this.handleSubmit },
           React.createElement(
-            'span',
-            { id: 'enter' },
-            'Write'
+            'h2',
+            { id: 'hello' },
+            'Write text to be analyzed'
           ),
-          ' a diary entry'
-        ),
-        React.createElement('br', null),
-        React.createElement('input', { className: 'form-control', placeholder: 'Enter title of your super awesome diary entry', name: 'title', onChange: this.handleTitle }),
-        React.createElement('br', null),
-        React.createElement('textarea', { id: 'textarea', type: 'text', name: 'entry', onChange: this.handlePost }),
-        React.createElement('br', null),
-        React.createElement(
-          'button',
-          { type: 'submit', className: 'btn btn-primary', value: 'Submit', onClick: this.handleSubmit },
-          'Send'
+          React.createElement('input', { className: 'form-control', placeholder: 'Enter title of your super awesome diary entry', name: 'title', onChange: this.handleTitle }),
+          React.createElement('br', null),
+          React.createElement('textarea', { id: 'textarea', type: 'text', name: 'entry', onChange: this.handlePost }),
+          React.createElement('br', null),
+          React.createElement(
+            'button',
+            { type: 'submit', className: 'btn btn-submit', value: 'Submit', onClick: this.handleSubmit },
+            'Analyze'
+          )
         )
       );
     }

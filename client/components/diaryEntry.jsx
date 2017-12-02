@@ -6,7 +6,8 @@ class DiaryEntry extends React.Component {
       clicked: false,
       sentences: [
       {'text': 'I am a dog', 'sentiment': ['confident: 0.5', 'angry: 0.2']},
-      {'text': 'I am a cat', 'sentiment': ['happy: 0.4']}]
+      {'text': 'I am a cat', 'sentiment': ['happy: 0.4']},
+      {'text': 'I am a turtle', 'sentiment': ['slow: 0.6', 'confident: 0.8']}]
     }
     this.diaryText = this.diaryText.bind(this);
     this.filterComponents = this.filterComponents.bind(this);

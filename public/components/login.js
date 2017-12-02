@@ -30,6 +30,9 @@ var Login = function (_React$Component) {
   _createClass(Login, [{
     key: "handleSubmit",
     value: function handleSubmit(event) {
+      console.log('handleSubmit login called');
+      console.log(this.state.username);
+      console.log(this.state.password);
       var scope = this;
       event.preventDefault();
       $.ajax({
