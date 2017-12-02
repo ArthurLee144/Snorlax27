@@ -99,23 +99,23 @@ app.get('/entries', function(req, res) {
 //HANDLE DIARY POSTS
 app.post('/entries', function(req, res) {
 
-  watson.analyzeTone(req.body.text, function(err, data) {
+  watson.analyzeTone(req.body.text, function(err, watsonData) {
     if (err) {
       console.log(error)
     }
-    watsonHelpers.overallSentimentAnalysis(data, function(err, overallData) {
-      console.log('clean overall====>', overallData);
-      watsonHelpers.sentenceLevelAnalysis(data, function(err, sentences) {
-        console.log('clean sentences====>', sentences);
-      })
-    });
+//relocate to get request
+    // watsonHelpers.overallSentimentAnalysis(data, function(err, overallData) {
+    //   console.log('clean overall====>', overallData);
+    //   watsonHelpers.sentenceLevelAnalysis(data, function(err, sentences) {
+    //     console.log('clean sentences====>', sentences);
+    //   })
+    // });
+    console.log('POST REQ SESSION USER', req.session.user);
+    addDiaryPost(res, req, req.body.title, req.body.text, watsonData);
   });
-
-  console.log('POST REQ SESSION USER', req.session.user);
-  addDiaryPost(res, req, req.body.title, req.body.text);
 });
 
-var addDiaryPost = function(res, req, title, text) {
+var addDiaryPost = function(res, req, title, text, watson) {
   textapi.sentiment({
     'text': text
   }, function(error, response) {
@@ -126,7 +126,8 @@ var addDiaryPost = function(res, req, title, text) {
       title: title,
       text: text,
       sentiment: response,
-      username: req.session.user
+      username: req.session.user,
+      watsonData: watson
     });
     newDiary.save(function(error) {
       if (error) throw error;
