@@ -10,10 +10,11 @@ var UserSchema = mongoose.Schema({
 });
 
 var DiarySchema = mongoose.Schema({
-  username: String,
   title: String,
-  sentiment: Object,
   text: String,
+  sentiment: Object,
+  username: String,
+  watsonData: Object,
   time: {
     type: Date,
     default: Date.now
@@ -24,5 +25,15 @@ var DiarySchema = mongoose.Schema({
 var User = mongoose.model('User', UserSchema);
 var Diary = mongoose.model('Diary', DiarySchema);
 
+exports.clearDB = function(callback) {
+    Diary.remove({}, function(err, data) {
+      if (err) {
+        console.log(err)
+      }
+      callback(err, data);
+    })
+
+  },
+// module.exports.clearDB = clearDB;
 module.exports.User = User;
 module.exports.Diary = Diary;

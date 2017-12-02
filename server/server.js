@@ -82,6 +82,11 @@ app.post('/login', function(req, res) {
   });
 });
 
+//GUEST GET
+app.get('/guest', function(req, res) {
+
+})
+
 //INITIAL POST GET
 app.get('/entries', function(req, res) {
   db.Diary.find({username: req.session.user}, function(error, data) {
@@ -99,21 +104,29 @@ app.get('/entries', function(req, res) {
 //HANDLE DIARY POSTS
 app.post('/entries', function(req, res) {
 
-  // watson.analyzeTone(req.body.text, function(err, data) {
-  //   if (err) {
-  //     console.log(error)
-  //   }
-  //   console.log('got data', data)
-  //   console.log(watsonHelpers.overallSentimentAnalysis(data, function(err, scrub){
-  //     console.log(scrub);
-  //   }));
-  // });
-
-  console.log('POST REQ SESSION USER', req.session.user);
-  addDiaryPost(res, req, req.body.title, req.body.text);
+  watson.analyzeTone(req.body.text, function(err, watsonData) {
+    var watsonProcessed = {
+      overallData: [],
+      sentences: []
+    }
+    var rawData = JSON.parse(watsonData);
+    if (err) {
+      console.log(error)
+    }
+      watsonHelpers.overallSentimentAnalysis(rawData, function(err, overallData) {
+        watsonProcessed.overallData = overallData;
+        if (rawData.sentences_tone) {
+          watsonHelpers.sentenceLevelAnalysis(rawData, function(err, sentences) {
+            watsonProcessed.sentences = sentences;
+          })
+        }
+      });
+    console.log('POST REQ SESSION USER', req.session.user);
+    addDiaryPost(res, req, req.body.title, req.body.text, watsonProcessed);
+  });
 });
 
-var addDiaryPost = function(res, req, title, text) {
+var addDiaryPost = function(res, req, title, text, watson) {
   textapi.sentiment({
     'text': text
   }, function(error, response) {
@@ -124,7 +137,8 @@ var addDiaryPost = function(res, req, title, text) {
       title: title,
       text: text,
       sentiment: response,
-      username: req.session.user
+      username: req.session.user,
+      watsonData: watson
     });
     newDiary.save(function(error) {
       if (error) throw error;
