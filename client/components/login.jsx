@@ -12,7 +12,9 @@ class Login extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log('handleSubmit login called')
+    console.log('handleSubmit login called');
+    console.log(this.state.username);
+    console.log(this.state.password)
     var scope = this;
     event.preventDefault();
     $.ajax({
@@ -25,7 +27,9 @@ class Login extends React.Component {
       success: function(data) {
         console.log('data login.jsx line 24', data)
         if (data === 'true') {
-          scope.props.handleLogin(scope.state.username);
+          scope.props.handleLogin(scope.state.username)
+
+
         }
       }
     });

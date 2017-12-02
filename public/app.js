@@ -34,14 +34,14 @@ var App = function (_React$Component) {
   _createClass(App, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var scope = this;
-      $.ajax({
-        type: 'GET',
-        url: '/entries',
-        success: function success(data) {
-          scope.setState({ entries: data });
-        }
-      });
+      // var scope = this;
+      // $.ajax({
+      //   type: 'GET',
+      //   url: '/entries',
+      //   success: function(data) {
+      //     scope.setState({ entries: data })
+      //   }
+      // });
 
       $(document).on('click', 'a[href^="#"]', function (event) {
         event.preventDefault();
@@ -71,7 +71,7 @@ var App = function (_React$Component) {
         type: 'POST',
         url: '/logout',
         success: function success(data) {
-          scope.setState({ userLoggedIn: false });
+          scope.setState({ userLoggedIn: false, entries: [] });
         }
       });
     }
