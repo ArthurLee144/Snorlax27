@@ -85,14 +85,20 @@ app.post('/login', function(req, res) {
 
 //GUEST GET
 app.get('/guest', function(req, res) {
-  console.log('got request');
-  aylien.getAylienData('hello', function(err, data) {
+  aylien.getAylienData('hello', function(err, aylienData) {
     if (err){
       console.log(err)
     }
-    console.log('data from aylien', data);
+    watsonHelpers.getAllWatsonData('hello. sonny', function(err, watsonData) {
+      if (err) {
+        console.log(err)
+      }
+      aylienData.watsonData = watsonData;
+      res.send(aylienData);
+      res.end();
+    })
   })
-})
+});
 
 //INITIAL POST GET
 app.get('/entries', function(req, res) {
@@ -100,7 +106,7 @@ app.get('/entries', function(req, res) {
     if (error) {
       console.log('error line 12 server.js', error);
     } else {
-      console.log('success 14 get request');
+      console.log('success 14 get request', data);
       data.reverse();
       res.send(data);
       res.end();

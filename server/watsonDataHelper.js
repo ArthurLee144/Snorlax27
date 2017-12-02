@@ -1,18 +1,13 @@
 var server = require('./server.js');
+var watson = require('./watsonServer.js');
 
-module.exports = {
 
-  getAllWatsonData: function(rawData) {
-    //place hodler
-  },
-
-  overallSentimentAnalysis: function(rawData, callback) {
+var overallSentimentAnalysis = function(rawData, callback) {
     var sentiments = rawData.document_tone.tones
-    console.log('sens', sentiments)
     callback(null, sentiments, rawData);
-    },
+    };
 
-  sentenceLevelAnalysis: function(rawData, callback) {
+var sentenceLevelAnalysis = function(rawData, callback) {
     //set max number of sentiments per sentence
     var maxSentiments = 100;
     //set max number of sentences per request
@@ -36,8 +31,6 @@ module.exports = {
 
           delete sentence.tones;
           sentence.allSentiments = setLength(sentence.allSentiments, maxSentiments);
-          console.log('one sentence', sentence)
-
           return sentence;
         });
 
@@ -49,6 +42,36 @@ module.exports = {
     return array.length > max ? array.slice(0, max) : array
   }
       callback(null, extractSentences(rawData));
-  },
+  };
 
-}
+var getAllWatsonData = function(rawData, callback) {
+        watson.analyzeTone('hello there. sonny', function(err, watsonData) {
+    var watsonProcessed = {
+      overallData: [],
+      sentences: []
+    }
+    var rawData = JSON.parse(watsonData);
+    if (err) {
+      console.log(error)
+    }
+      overallSentimentAnalysis(rawData, function(err, overallData) {
+        if (err) {
+          console.log(err);
+        }
+        watsonProcessed.overallData = overallData;
+        if (rawData.sentences_tone) {
+          sentenceLevelAnalysis(rawData, function(err, sentences) {
+            if (err) {
+              console.log(err);
+            }
+            watsonProcessed.sentences = sentences;
+          })
+        }
+      });
+    callback(null, watsonProcessed);
+    });
+  };
+
+module.exports.overallSentimentAnalysis = overallSentimentAnalysis;
+module.exports.sentenceLevelAnalysis = sentenceLevelAnalysis;
+module.exports.getAllWatsonData = getAllWatsonData;

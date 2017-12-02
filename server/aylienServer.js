@@ -15,7 +15,6 @@ var getAylienData = (text, callback) => {
     if (error) {
       console.log(error);
     } else {
-      console.log('aylien', response);
       callback(null, response);
     }
   });
