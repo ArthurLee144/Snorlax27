@@ -155,11 +155,15 @@ class App extends React.Component {
   filterComponents() {
       return (
         <div>
-          <span>
-          <Input rerender={this.rerender} loggedIn={this.state.userLoggedIn}/>
-          <div id="container"></div>
 
-          </span>
+          <Input rerender={this.rerender} loggedIn={this.state.userLoggedIn}/>
+          <div id="results"><h2 id="hello">Results</h2>
+          <div id="container">
+
+          </div>
+          </div>
+
+
           <DiaryList list={this.state.entries} />
           </div>
 

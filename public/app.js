@@ -239,10 +239,15 @@ var App = function (_React$Component) {
       return React.createElement(
         'div',
         null,
+        React.createElement(Input, { rerender: this.rerender, loggedIn: this.state.userLoggedIn }),
         React.createElement(
-          'span',
-          null,
-          React.createElement(Input, { rerender: this.rerender, loggedIn: this.state.userLoggedIn }),
+          'div',
+          { id: 'results' },
+          React.createElement(
+            'h2',
+            { id: 'hello' },
+            'Results'
+          ),
           React.createElement('div', { id: 'container' })
         ),
         React.createElement(DiaryList, { list: this.state.entries })
