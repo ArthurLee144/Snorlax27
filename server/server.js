@@ -112,7 +112,6 @@ app.post('/entries', function(req, res) {
         watsonProcessed.overallData = overallData;
         if (rawData.sentences_tone) {
           watsonHelpers.sentenceLevelAnalysis(rawData, function(err, sentences) {
-            console.log('clean sentences====>', sentences);
             watsonProcessed.sentences = sentences;
           })
         }

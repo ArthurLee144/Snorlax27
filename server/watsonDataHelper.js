@@ -4,6 +4,7 @@ module.exports = {
 
   overallSentimentAnalysis: function(rawData, callback) {
     var sentiments = rawData.document_tone.tones
+    console.log('sens', sentiments)
     callback(null, sentiments, rawData);
     },
 
@@ -22,13 +23,21 @@ module.exports = {
             .sort((a,b) => {
               return b.score - a.score
             })
-            .filter(sentimentObj =>
-              sentimentObj.score >= scoreThreshold
-            )
+            .filter(sentimentObj => {
+              return sentimentObj.score >= scoreThreshold
+            })
+            .map(senti => {
+              return senti.tone_name + ': ' + senti.score.toFixed(2);
+            })
+
           delete sentence.tones;
           sentence.allSentiments = setLength(sentence.allSentiments, maxSentiments);
+          console.log('one sentence', sentence)
+
           return sentence;
         });
+
+
       return setLength(sentences, sentenceCount);
     }
 
