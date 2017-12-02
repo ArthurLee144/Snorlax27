@@ -63,7 +63,6 @@ var createSession = function(req, res, newUser) {
   })
 }
 
-
 //HANDLE LOGIN
 app.post('/login', function(req, res) {
   db.User.findOne({
@@ -94,6 +93,7 @@ app.get('/guest', function(req, res) {
         console.log(err)
       }
       aylienData.watsonData = watsonData;
+      console.log(aylienData);
       res.send(aylienData);
       res.end();
     })
@@ -116,7 +116,6 @@ app.get('/entries', function(req, res) {
 
 //HANDLE DIARY POSTS
 app.post('/entries', function(req, res) {
-
   watson.analyzeTone(req.body.text, function(err, watsonData) {
     var watsonProcessed = {
       overallData: [],

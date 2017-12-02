@@ -2,10 +2,30 @@ var server = require('./server.js');
 var watson = require('./watsonServer.js');
 
 
-var overallSentimentAnalysis = function(rawData, callback) {
-    var sentiments = rawData.document_tone.tones
-    callback(null, sentiments, rawData);
-    };
+var setLength = (array, max) => {
+  return array.length > max ? array.slice(0, max) : array
+}
+
+var extractSentences = (data, maxSentiments, sentenceCount, scoreThreshold) => {
+    var sentences = data.sentences_tone
+      .map(sentence => {
+        sentence.allSentiments = sentence.tones
+          .sort((a,b) => {
+            return b.score - a.score
+          })
+          .filter(sentimentObj => {
+            return sentimentObj.score >= scoreThreshold
+          })
+          .map(senti => {
+            return senti.tone_name + ': ' + senti.score.toFixed(2);
+          })
+
+        delete sentence.tones;
+        sentence.allSentiments = setLength(sentence.allSentiments, maxSentiments);
+        return sentence;
+      });
+    return setLength(sentences, sentenceCount);
+  }
 
 var sentenceLevelAnalysis = function(rawData, callback) {
     //set max number of sentiments per sentence
@@ -15,34 +35,13 @@ var sentenceLevelAnalysis = function(rawData, callback) {
     //set min score cutoff for each sentiment
     var scoreThreshold = 0;
 
-    var extractSentences = data => {
-      var sentences = data.sentences_tone
-        .map(sentence => {
-          sentence.allSentiments = sentence.tones
-            .sort((a,b) => {
-              return b.score - a.score
-            })
-            .filter(sentimentObj => {
-              return sentimentObj.score >= scoreThreshold
-            })
-            .map(senti => {
-              return senti.tone_name + ': ' + senti.score.toFixed(2);
-            })
-
-          delete sentence.tones;
-          sentence.allSentiments = setLength(sentence.allSentiments, maxSentiments);
-          return sentence;
-        });
-
-
-      return setLength(sentences, sentenceCount);
-    }
-
-  var setLength = (array, max) => {
-    return array.length > max ? array.slice(0, max) : array
-  }
-      callback(null, extractSentences(rawData));
+      callback(null, extractSentences(rawData, maxSentiments, sentenceCount, scoreThreshold));
   };
+
+var overallSentimentAnalysis = function(rawData, callback) {
+    var sentiments = rawData.document_tone.tones
+    callback(null, sentiments, rawData);
+    };
 
 var getAllWatsonData = function(rawData, callback) {
         watson.analyzeTone('hello there. sonny', function(err, watsonData) {
