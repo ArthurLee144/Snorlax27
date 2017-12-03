@@ -6,4 +6,3 @@ sudo: enabled
 services: mongodb
 script:
   - npm run travisbuild
-  - npm test
