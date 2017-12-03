@@ -8,7 +8,8 @@ class Input extends React.Component {
       sentences: [
       {'text': 'I am a dog', 'allSentiments': ['confident: 0.5', 'angry: 0.2']},
       {'text': 'I am a cat', 'allSentiments': ['happy: 0.4']},
-      {'text': 'I am a turtle', 'allSentiments': ['slow: 0.6', 'confident: 0.8']}]
+      {'text': 'I am a turtle', 'allSentiments': ['slow: 0.6', 'confident: 0.8']}],
+      watsonScores: [3, 5, 3, 7, 8, 1, 9]
 
 
     }
@@ -64,6 +65,64 @@ class Input extends React.Component {
 
   }
 
+  componentDidMount() {
+    var context = this;
+    console.log('MAKE MY CHART', context.state.watsonScores);
+    context.makeChart();
+    }
+
+    makeChart() {
+        console.log('makeChart was called')
+        var context = this;
+        Highcharts.chart('container', {
+
+            chart: {
+                polar: true,
+                type: 'line'
+            },
+
+            title: {
+                text: "Your Text's Sentiments",
+                x: -80
+            },
+
+            pane: {
+                size: '80%'
+            },
+
+            xAxis: {
+                categories: ['Anger', 'Fear', 'Joy', 'Sadness', 'Analytical', 'Confident', 'Tentative'],
+                tickmarkPlacement: 'on',
+                lineWidth: 0
+            },
+
+            yAxis: {
+                gridLineInterpolation: 'polygon',
+                lineWidth: 0,
+                min: 0
+            },
+
+            tooltip: {
+                shared: true,
+                pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
+            },
+
+            legend: {
+                align: 'right',
+                verticalAlign: 'top',
+                y: 70,
+                layout: 'vertical'
+            },
+
+            series: [{
+        name: 'Sentiment Scores',
+        data: context.state.watsonScores,
+        pointPlacement: 'on'
+    }]
+
+        });
+    }
+
   render() {
     return(
       <div>
@@ -78,9 +137,8 @@ class Input extends React.Component {
       </div>
 
       <div id="results">
-          <div id="container">
+      <div id="container"></div>
 
-          </div>
           </div>
 
       <div id="impactful">
@@ -96,6 +154,7 @@ class Input extends React.Component {
             )}
           </div><br/>
       </div>
+
       </div>
     )
   }
