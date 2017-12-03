@@ -47,6 +47,21 @@ class Input extends React.Component {
         }).then(function() {
           context.props.rerender();
         });
+
+        $.ajax({
+          type: 'GET',
+          url: '/guest',
+          data: {
+            text: this.state.newestPost,
+          },
+          success: function(data) {
+            console.log('success get request data ', data.watsonData.sentences, context.state.sentences)
+            context.setState({sentences: data.watsonData.sentences}, function() {
+              console.log(context.state.sentences)
+            })
+          }
+          })
+
       } else {
           $.ajax({
           type: 'GET',

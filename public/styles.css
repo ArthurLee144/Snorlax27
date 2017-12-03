@@ -57,7 +57,7 @@ header {
 
 .seemless2 {
   height: 70vh;
-  margin: 0 auto;
+  margin-left: 0%;
   background-attachment: fixed;
   background-color: #fff;
   background-size: cover;
@@ -245,13 +245,19 @@ navbar {
   height: 310px;
   padding: 50px;
   display: inline-block;
+  position: absolute;
+  margin: auto;
+
 }
 
 #centerlog {
   display: inline-block;
-  position: center;
+  position: absolute;
   margin-top: 2%;
-  margin-left: 37%;
+  /*margin: auto;*/
+
+  margin-left: 35%;
+  /*margin-right: 35%;*/
 }
 
 i {
