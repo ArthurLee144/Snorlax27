@@ -249,6 +249,7 @@ navbar {
 
 #centerlog {
   display: inline-block;
+  position: center;
   margin-top: 2%;
   margin-left: 37%;
 }
