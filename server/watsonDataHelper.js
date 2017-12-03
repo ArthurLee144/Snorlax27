@@ -57,8 +57,6 @@ var sentenceLevelAnalysis = function(rawData, callback) {
 
 var overallSentimentAnalysis = function(rawData, callback) {
     var sentiments = rawData.document_tone.tones
-    console.log('tones', sentiments)
-
     var scores = [0, 0, 0, 0, 0, 0, 0];
     var hash = {
       anger: 0,
@@ -76,7 +74,6 @@ var overallSentimentAnalysis = function(rawData, callback) {
         }
       });
     }
-    console.log('scores', scores)
     callback(null, scores, rawData);
     };
 

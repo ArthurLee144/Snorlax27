@@ -94,6 +94,7 @@ app.get('/guest', function(req, res) {
         console.log(err)
       }
       aylienData.watsonData = watsonData;
+      console.log(aylienData);
       res.send(aylienData);
       res.end();
     })
@@ -157,7 +158,6 @@ var addDiaryPost = function(res, req, title, text, watson) {
       res.status(200).end();
     });
   });
-
 }
 
 //HANDLE TONE ANALYSIS
