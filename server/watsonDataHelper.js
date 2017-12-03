@@ -33,8 +33,6 @@ var extractSentences = (data, maxSentiments, sentenceCount, scoreThreshold) => {
       if (b.allSentiments.length) {
       second = b.allSentiments[0].split(' ')[1];
       }
-      console.log('first',  first);
-      console.log('second', second);
       return second - first;
     })
     //show top n sentences
@@ -59,7 +57,27 @@ var sentenceLevelAnalysis = function(rawData, callback) {
 
 var overallSentimentAnalysis = function(rawData, callback) {
     var sentiments = rawData.document_tone.tones
-    callback(null, sentiments, rawData);
+    console.log('tones', sentiments)
+
+    var scores = [0, 0, 0, 0, 0, 0, 0];
+    var hash = {
+      anger: 0,
+      fear: 1,
+      joy: 2,
+      sadness: 3,
+      analytical: 4,
+      confident: 5,
+      tentative: 6,
+    }
+    if (sentiments.length) {
+      sentiments.map(tone => {
+        if (hash.hasOwnProperty(tone.tone_id)) {
+          scores[hash[tone.tone_id]] = tone.score.toFixed(2);
+        }
+      });
+    }
+    console.log('scores', scores)
+    callback(null, scores, rawData);
     };
 
 var getAllWatsonData = function(rawData, callback) {
