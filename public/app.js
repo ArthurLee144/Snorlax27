@@ -209,29 +209,17 @@ var App = function (_React$Component) {
     key: 'rerender',
     value: function rerender() {
       var scope = this;
-      if (scope.state.userLoggedIn) {
-        $.ajax({
-          type: 'GET',
-          url: '/entries',
-          success: function success(data) {
-            scope.setState({ entries: data });
-          },
-          error: function error(err) {
-            console.log('rerender error', err);
-          }
-        });
-      } else {
-        $.ajax({
-          type: 'GET',
-          url: '/guest',
-          data: {
-            text: this.state.newestPost
-          },
-          success: function success(data) {
-            scope.setState({ sentences: data });
-          }
-        });
-      }
+
+      $.ajax({
+        type: 'GET',
+        url: '/entries',
+        success: function success(data) {
+          scope.setState({ entries: data });
+        },
+        error: function error(err) {
+          console.log('rerender error', err);
+        }
+      });
     }
   }, {
     key: 'filterComponents',
