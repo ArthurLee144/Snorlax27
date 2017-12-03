@@ -84,11 +84,12 @@ app.post('/login', function(req, res) {
 
 //GUEST GET
 app.get('/guest', function(req, res) {
-  aylien.getAylienData('hello', function(err, aylienData) {
+  console.log('guest get reqbodytext =', req.body.text);
+  aylien.getAylienData(req.body.text, function(err, aylienData) {
     if (err){
       console.log(err)
     }
-    watsonHelpers.getAllWatsonData('hello. sonny', function(err, watsonData) {
+    watsonHelpers.getAllWatsonData(req.body.text, function(err, watsonData) {
       if (err) {
         console.log(err)
       }
