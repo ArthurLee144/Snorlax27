@@ -15,6 +15,7 @@ class Login extends React.Component {
     console.log('handleSubmit login called');
     console.log(this.state.username);
     console.log(this.state.password)
+
     var scope = this;
     event.preventDefault();
     $.ajax({
@@ -28,14 +29,21 @@ class Login extends React.Component {
         console.log('data login.jsx line 24', data)
         if (data === 'true') {
           scope.props.handleLogin(scope.state.username)
-
-
         }
+      },
+      error: function(errorType, warn, exception) {
+        console.log('error was thorwn')
+        console.log('errorType', errorType)
+        console.log('warn', warn)
+        console.log('exception', exception)
       }
     });
   }
 
   handleCreate(event) {
+    console.log('handleCreate login called');
+    console.log(this.state.username);
+    console.log(this.state.password)
     event.preventDefault();
     $.ajax({
       type: 'POST',
@@ -45,7 +53,7 @@ class Login extends React.Component {
         password: this.state.password
       },
       success: function() {
-        console.log('line 23 input.jsx post success')
+        console.log('handleCreate success')
       }
     });
   }
@@ -62,12 +70,37 @@ class Login extends React.Component {
     return (
     <div className="loginwrapper" id='signin'>
       <form onSubmit={this.handleSubmit}>
-        <div className="tab">Enter a username:</div> <input id="input" type="text" onChange={this.handleUsername}/>
-        <div className="tab">Enter a password:</div> <input  id="input" type="text" onChange={this.handlePassword}/>
-        <a href="#text"><button id="submit" className="btn" type="submit" onClick={this.handleSubmit}>Login</button></a>
+
+        <div className="tab">
+          Enter a username:
+        </div>
+         <input id="input" type="text" onChange={this.handleUsername}/>
+
+        <div className="tab">
+          Enter a password:
+        </div>
+          <input  id="input" type="text" onChange={this.handlePassword}/>
+
+        <a href="#text">
+          <button id="submit" className="btn" type="submit" onClick={this.handleSubmit}>
+            Login
+          </button>
+        </a>
+
         <div className="space"></div>
-        <a href="#text"><button id="submit" className="btn" type="submit" onClick={this.handleCreate}>Create</button></a>
-        <a href="#text"><button id="submit" className="btn" type="submit">Continue as a Guest</button></a>
+
+        <a href="#text">
+          <button id="submit" className="btn" type="submit" onClick={this.handleCreate}>
+            Create
+          </button>
+        </a>
+
+        <a href="#text">
+          <button id="submit" className="btn" type="submit">
+            Continue as a Guest
+          </button>
+        </a>
+
       </form>
     </div>
     )

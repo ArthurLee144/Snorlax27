@@ -33,6 +33,7 @@ var Login = function (_React$Component) {
       console.log('handleSubmit login called');
       console.log(this.state.username);
       console.log(this.state.password);
+
       var scope = this;
       event.preventDefault();
       $.ajax({
@@ -47,12 +48,21 @@ var Login = function (_React$Component) {
           if (data === 'true') {
             scope.props.handleLogin(scope.state.username);
           }
+        },
+        error: function error(errorType, warn, exception) {
+          console.log('error was thorwn');
+          console.log('errorType', errorType);
+          console.log('warn', warn);
+          console.log('exception', exception);
         }
       });
     }
   }, {
     key: "handleCreate",
     value: function handleCreate(event) {
+      console.log('handleCreate login called');
+      console.log(this.state.username);
+      console.log(this.state.password);
       event.preventDefault();
       $.ajax({
         type: 'POST',
@@ -62,7 +72,7 @@ var Login = function (_React$Component) {
           password: this.state.password
         },
         success: function success() {
-          console.log('line 23 input.jsx post success');
+          console.log('handleCreate success');
         }
       });
     }
@@ -90,14 +100,12 @@ var Login = function (_React$Component) {
             { className: "tab" },
             "Enter a username:"
           ),
-          " ",
           React.createElement("input", { id: "input", type: "text", onChange: this.handleUsername }),
           React.createElement(
             "div",
             { className: "tab" },
             "Enter a password:"
           ),
-          " ",
           React.createElement("input", { id: "input", type: "text", onChange: this.handlePassword }),
           React.createElement(
             "a",
