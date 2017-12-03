@@ -28,11 +28,31 @@ class Input extends React.Component {
     this.setState({newestTitle: event.target.value})
   }
 
+  handleGuestGet() {
+    var context = this;
+    $.ajax({
+        type: 'GET',
+        url: '/guest',
+        data: {
+          text: this.state.newestPost,
+        },
+        success: function(data) {
+          context.setState({
+            sentences: data.watsonData.sentences,
+            watsonScores: data.watsonData.overallData}, function() {
+              console.log('successful get for watson in guest get');
+            }
+          );
+        }
+    }).then(function() {
+      context.makeChart();
+    });
+  }
+
   handleSubmit(event) {
     var context = this;
     event.preventDefault();
       if (context.props.loggedIn) {
-
         $.ajax({
           type: 'POST',
           url: '/entries',
@@ -47,40 +67,10 @@ class Input extends React.Component {
         }).then(function() {
           context.props.rerender();
         });
-
-        $.ajax({
-          type: 'GET',
-          url: '/guest',
-          data: {
-            text: this.state.newestPost,
-          },
-          success: function(data) {
-            console.log('success get request data ', data.watsonData.sentences, context.state.sentences)
-            context.setState({sentences: data.watsonData.sentences}, function() {
-              console.log(context.state.sentences)
-            })
-          }
-          })
-
+        context.handleGuestGet();
       } else {
-          $.ajax({
-          type: 'GET',
-          url: '/guest',
-          data: {
-            text: this.state.newestPost,
-          },
-          success: function(data) {
-            console.log('success get request data ', data.watsonData.sentences, context.state.sentences)
-            context.setState({sentences: data.watsonData.sentences, watsonScores: data.watsonData.overallData}, function() {
-              console.log('watsonData after get req = ', context.state.watsonScores);
-              console.log('watsonData from server = ', data.watsonData.overallData);
-            })
-          }
-          }).then(function() {
-            context.makeChart();
-          })
+        context.handleGuestGet();
       }
-
   }
 
   componentDidMount() {
