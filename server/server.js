@@ -84,6 +84,7 @@ app.post('/login', function(req, res) {
 
 //GUEST GET
 app.get('/guest', function(req, res) {
+  console.log('got req');
   aylien.getAylienData(req.query, function(err, aylienData) {
     if (err){
       console.log(err)
@@ -157,7 +158,6 @@ var addDiaryPost = function(res, req, title, text, watson) {
       res.status(200).end();
     });
   });
-
 }
 
 //HANDLE TONE ANALYSIS
