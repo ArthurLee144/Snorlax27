@@ -209,29 +209,17 @@ var App = function (_React$Component) {
     key: 'rerender',
     value: function rerender() {
       var scope = this;
-      if (scope.state.userLoggedIn) {
-        $.ajax({
-          type: 'GET',
-          url: '/entries',
-          success: function success(data) {
-            scope.setState({ entries: data });
-          },
-          error: function error(err) {
-            console.log('rerender error', err);
-          }
-        });
-      } else {
-        $.ajax({
-          type: 'GET',
-          url: '/guest',
-          data: {
-            text: this.state.newestPost
-          },
-          success: function success(data) {
-            scope.setState({ sentences: data });
-          }
-        });
-      }
+
+      $.ajax({
+        type: 'GET',
+        url: '/entries',
+        success: function success(data) {
+          scope.setState({ entries: data });
+        },
+        error: function error(err) {
+          console.log('rerender error', err);
+        }
+      });
     }
   }, {
     key: 'filterComponents',
@@ -240,16 +228,6 @@ var App = function (_React$Component) {
         'div',
         null,
         React.createElement(Input, { rerender: this.rerender, loggedIn: this.state.userLoggedIn }),
-        React.createElement(
-          'div',
-          { id: 'results' },
-          React.createElement(
-            'h2',
-            { id: 'hello' },
-            'Results'
-          ),
-          React.createElement('div', { id: 'container' })
-        ),
         React.createElement(DiaryList, { list: this.state.entries })
       );
       this.handleLogin = this.handleLogin.bind(this);

@@ -125,7 +125,7 @@ class App extends React.Component {
   //Display diary in list after post
   rerender() {
     var scope = this;
-    if (scope.state.userLoggedIn) {
+
       $.ajax({
         type: 'GET',
         url: '/entries',
@@ -136,20 +136,7 @@ class App extends React.Component {
           console.log('rerender error', err);
         }
       });
-    } else {
-        $.ajax({
-          type: 'GET',
-          url: '/guest',
-          data: {
-            text: this.state.newestPost,
-          },
-          success: function(data) {
-            scope.setState({sentences: data})
-          }
-        })
 
-
-    }
   }
 
   filterComponents() {
@@ -157,11 +144,7 @@ class App extends React.Component {
         <div>
 
           <Input rerender={this.rerender} loggedIn={this.state.userLoggedIn}/>
-          <div id="results"><h2 id="hello">Results</h2>
-          <div id="container">
 
-          </div>
-          </div>
 
 
           <DiaryList list={this.state.entries} />

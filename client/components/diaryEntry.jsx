@@ -3,11 +3,8 @@ class DiaryEntry extends React.Component {
     super(props);
     this.state = {
       entries: [],
-      clicked: false,
-      sentences: [
-      {'text': 'I am a dog', 'sentiment': ['confident: 0.5', 'angry: 0.2']},
-      {'text': 'I am a cat', 'sentiment': ['happy: 0.4']},
-      {'text': 'I am a turtle', 'sentiment': ['slow: 0.6', 'confident: 0.8']}]
+      clicked: false
+
     }
     this.diaryText = this.diaryText.bind(this);
     this.filterComponents = this.filterComponents.bind(this);
@@ -62,16 +59,7 @@ class DiaryEntry extends React.Component {
           <div className="entryInfo">
           Entry: {this.props.item.text} <br/>
           Date: {postDate.toDateString()} <br/>
-          Your most impactful sentences:<br/>
-          <div>
-          {this.state.sentences.map((sentence, i) =>
-            <div>
-            <div>{sentence.text}</div>
-            {sentence.sentiment.map((emotion) =>
-              <div>{emotion}</div>
-              )}
-            </div>
-            )}</div><br/>
+
           <br/>
           </div>
         </div>
