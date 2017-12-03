@@ -22,6 +22,7 @@
     "babel-preset-react": "^6.23.0",
     "express-session": "^1.15.6",
     "express-sessions": "^1.0.6",
+    "npx": "^9.7.1",
     "react-bootstrap": "^0.31.5"
   },
   "dependencies": {
