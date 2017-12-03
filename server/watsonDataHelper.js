@@ -44,7 +44,8 @@ var overallSentimentAnalysis = function(rawData, callback) {
     };
 
 var getAllWatsonData = function(rawData, callback) {
-        watson.analyzeTone('hello there. sonny', function(err, watsonData) {
+  console.log(rawData);
+        watson.analyzeTone(rawData.text, function(err, watsonData) {
     var watsonProcessed = {
       overallData: [],
       sentences: []
