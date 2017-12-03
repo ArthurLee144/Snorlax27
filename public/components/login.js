@@ -35,7 +35,9 @@ var Login = function (_React$Component) {
       console.log(this.state.password);
 
       var scope = this;
-      event.preventDefault();
+      if (event) {
+        event.preventDefault();
+      }
       $.ajax({
         type: 'POST',
         url: '/login',
@@ -50,6 +52,7 @@ var Login = function (_React$Component) {
           }
         },
         error: function error(errorType, warn, exception) {
+          //should render some warning to user
           console.log('error was thorwn');
           console.log('errorType', errorType);
           console.log('warn', warn);
@@ -60,9 +63,7 @@ var Login = function (_React$Component) {
   }, {
     key: "handleCreate",
     value: function handleCreate(event) {
-      console.log('handleCreate login called');
-      console.log(this.state.username);
-      console.log(this.state.password);
+      var scope = this;
       event.preventDefault();
       $.ajax({
         type: 'POST',
@@ -73,6 +74,7 @@ var Login = function (_React$Component) {
         },
         success: function success() {
           console.log('handleCreate success');
+          scope.handleSubmit();
         }
       });
     }
