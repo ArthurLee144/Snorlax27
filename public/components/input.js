@@ -21,7 +21,7 @@ var Input = function (_React$Component) {
       newestPost: {},
       username: '',
       sentences: [{ 'text': 'I am a dog', 'allSentiments': ['confident: 0.5', 'angry: 0.2'] }, { 'text': 'I am a cat', 'allSentiments': ['happy: 0.4'] }, { 'text': 'I am a turtle', 'allSentiments': ['slow: 0.6', 'confident: 0.8'] }],
-      watsonScores: [3, 5, 3, 7, 8, 1, 9]
+      watsonScores: [null, null, null, null, null, null, null]
 
     };
     _this.handleTitle = _this.handleTitle.bind(_this);
@@ -84,10 +84,13 @@ var Input = function (_React$Component) {
           },
           success: function success(data) {
             console.log('success get request data ', data.watsonData.sentences, context.state.sentences);
-            context.setState({ sentences: data.watsonData.sentences }, function () {
-              console.log(context.state.sentences);
+            context.setState({ sentences: data.watsonData.sentences, watsonScores: data.watsonData.overallData }, function () {
+              console.log('watsonData after get req = ', context.state.watsonScores);
+              console.log('watsonData from server = ', data.watsonData.overallData);
             });
           }
+        }).then(function () {
+          context.makeChart();
         });
       }
     }
@@ -133,7 +136,7 @@ var Input = function (_React$Component) {
 
         tooltip: {
           shared: true,
-          pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
+          pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.2f}</b><br/>'
         },
 
         legend: {
