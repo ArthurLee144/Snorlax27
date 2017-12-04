@@ -112,7 +112,7 @@ var Login = function (_React$Component) {
               { href: "#hello" },
               React.createElement(
                 "button",
-                { id: "submit", className: "btn btn-warning", type: "submit", onClick: this.handleSubmit },
+                { id: "submit", className: "btn btn-warning login", type: "submit", onClick: this.handleSubmit },
                 "Login"
               )
             ),
@@ -122,7 +122,7 @@ var Login = function (_React$Component) {
               { href: "#hello" },
               React.createElement(
                 "button",
-                { id: "submit", className: "btn btn-warning", type: "submit", onClick: this.handleCreate },
+                { id: "submit", className: "btn btn-warning create", type: "submit", onClick: this.handleCreate },
                 "Create"
               )
             )
