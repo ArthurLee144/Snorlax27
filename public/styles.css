@@ -530,3 +530,11 @@ font-family: 'Noto Serif', serif; */
   /*display: inline-block;*/
 }
 
+.navbar-brand {
+  font-family: 'Spectral SC', serif;
+  font-size: 35px !important;
+}
+
+#intro {
+  margin-top: 50px;
+}

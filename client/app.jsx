@@ -62,7 +62,7 @@ class App extends React.Component {
   icons() {
     return (
       <section>
-        <div>
+        <div id="intro">
           <h2>Let an AI analyze your writing for the most effective communication.</h2>
         </div>
         <div className="ionicon">
@@ -97,7 +97,7 @@ class App extends React.Component {
             </div>
             <ul className="nav navbar-nav">
 
-              <li><a href="#top">Made with<i className="ion-android-favorite icon-medium"></i>by Snorlax27 @ California, Maryland, and Toronto</a>
+              <li><a href="#top">Made with<i className="ion-android-favorite icon-medium"></i> in California & Massachusetts</a>
               </li>
             </ul>
             <div id="space"></div>
@@ -113,7 +113,7 @@ class App extends React.Component {
               <a className="navbar-brand" href="#top">Emotisphere</a>
             </div>
             <ul className="nav navbar-nav">
-              <li><a href="#top">Made with<i className="ion-android-favorite icon-medium"></i>by Snorlax27 @ California, Maryland, and Toronto</a>
+              <li><a href="#top">Made with<i className="ion-android-favorite icon-medium"></i> in California & Massachusetts</a>
               </li>
             </ul>
           </div>
