@@ -12,10 +12,6 @@ class Login extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log('handleSubmit login called');
-    console.log(this.state.username);
-    console.log(this.state.password)
-
     var scope = this;
     if (event) {
       event.preventDefault();
@@ -35,7 +31,6 @@ class Login extends React.Component {
       },
       error: function(errorType, warn, exception) {
         //should render some warning to user
-        console.log('error was thorwn')
         console.log('errorType', errorType)
         console.log('warn', warn)
         console.log('exception', exception)
@@ -72,37 +67,30 @@ class Login extends React.Component {
     return (
     <div className="loginwrapper" id='signin'>
       <form onSubmit={this.handleSubmit}>
-
         <div className="tab">
           Enter a username:
         </div>
-         <input id="input" type="text" onChange={this.handleUsername}/>
-
+        <input id="input" type="text" onChange={this.handleUsername}/>
         <div className="tab">
           Enter a password:
         </div>
-          <input  id="input" type="text" onChange={this.handlePassword}/>
-
+        <input  id="input" type="text" onChange={this.handlePassword}/>
         <a href="#text">
           <button id="submit" className="btn" type="submit" onClick={this.handleSubmit}>
             Login
           </button>
         </a>
-
         <div className="space"></div>
-
         <a href="#text">
           <button id="submit" className="btn" type="submit" onClick={this.handleCreate}>
             Create
           </button>
         </a>
-
         <a href="#text">
           <button id="submit" className="btn" type="submit">
             Continue as a Guest
           </button>
         </a>
-
       </form>
     </div>
     )
