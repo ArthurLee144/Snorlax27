@@ -105,31 +105,39 @@ var Login = function (_React$Component) {
           ),
           React.createElement("input", { id: "input", type: "text", onChange: this.handlePassword }),
           React.createElement(
-            "a",
-            { href: "#text" },
+            "div",
+            { id: "loginbuttons" },
             React.createElement(
-              "button",
-              { id: "submit", className: "btn", type: "submit", onClick: this.handleSubmit },
-              "Login"
+              "a",
+              { href: "#hello" },
+              React.createElement(
+                "button",
+                { id: "submit", className: "btn", type: "submit", onClick: this.handleSubmit },
+                "Login"
+              )
+            ),
+            React.createElement("div", { className: "space" }),
+            React.createElement(
+              "a",
+              { href: "#hello" },
+              React.createElement(
+                "button",
+                { id: "submit", className: "btn", type: "submit", onClick: this.handleCreate },
+                "Create"
+              )
             )
           ),
-          React.createElement("div", { className: "space" }),
           React.createElement(
-            "a",
-            { href: "#text" },
+            "div",
+            { id: "guestbutton" },
             React.createElement(
-              "button",
-              { id: "submit", className: "btn", type: "submit", onClick: this.handleCreate },
-              "Create"
-            )
-          ),
-          React.createElement(
-            "a",
-            { href: "#text" },
-            React.createElement(
-              "button",
-              { id: "submit", className: "btn", type: "submit" },
-              "Continue as a Guest"
+              "a",
+              { href: "#hello" },
+              React.createElement(
+                "button",
+                { id: "submit", className: "btn", type: "submit" },
+                "Continue as a Guest"
+              )
             )
           )
         )

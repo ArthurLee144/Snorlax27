@@ -119,7 +119,7 @@ var Input = function (_React$Component) {
         },
 
         title: {
-          text: "Your Text's Sentiments",
+          text: "",
           x: 0
 
         },
@@ -145,12 +145,12 @@ var Input = function (_React$Component) {
           pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.2f}%</b><br/>'
         },
 
-        // legend: {
-        //     align: 'center',
-        //     verticalAlign: 'middle',
-        //     y: 100,
-        //     layout: 'vertical'
-        // },
+        legend: {
+          align: 'center',
+          verticalAlign: 'top'
+          //     y: 100,
+          //     layout: 'vertical'
+        },
 
         series: [{
           name: 'Sentiment Scores (0-100)',
@@ -200,14 +200,18 @@ var Input = function (_React$Component) {
           "div",
           { id: "results" },
           React.createElement(
-            "button",
-            { className: " btn btn-info", id: "btn-chart", onClick: this.chartClick.bind(this) },
-            "Chart"
-          ),
-          React.createElement(
-            "button",
-            { className: " btn btn-info", id: "btn-sentences", onClick: this.sentencesClick.bind(this) },
-            "Line by Line"
+            "div",
+            { id: "togglebuttons" },
+            React.createElement(
+              "button",
+              { className: " btn btn-info", id: "btn-chart", onClick: this.chartClick.bind(this) },
+              "Chart"
+            ),
+            React.createElement(
+              "button",
+              { className: " btn btn-info", id: "btn-sentences", onClick: this.sentencesClick.bind(this) },
+              "Line by Line"
+            )
           ),
           React.createElement("div", { id: "container" }),
           React.createElement(

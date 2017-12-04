@@ -95,7 +95,7 @@ class Input extends React.Component {
               },
 
               title: {
-                  text: "Your Text's Sentiments",
+                  text: "",
                   x: 0,
 
               },
@@ -121,12 +121,12 @@ class Input extends React.Component {
                   pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.2f}%</b><br/>'
               },
 
-              // legend: {
-              //     align: 'center',
-              //     verticalAlign: 'middle',
+              legend: {
+                  align: 'center',
+                  verticalAlign: 'top',
               //     y: 100,
               //     layout: 'vertical'
-              // },
+              },
 
               series: [{
           name: 'Sentiment Scores (0-100)',
@@ -150,9 +150,10 @@ class Input extends React.Component {
       </div>
 
       <div id="results">
-        <button className=" btn btn-info" id="btn-chart" onClick={this.chartClick.bind(this)}>Chart</button>
-        <button className=" btn btn-info" id="btn-sentences" onClick={this.sentencesClick.bind(this)}>Line by Line</button>
-
+        <div id="togglebuttons">
+          <button className=" btn btn-info" id="btn-chart" onClick={this.chartClick.bind(this)}>Chart</button>
+          <button className=" btn btn-info" id="btn-sentences" onClick={this.sentencesClick.bind(this)}>Line by Line</button>
+        </div>
           <div id="container"></div>
 
           <div id="impactful">
