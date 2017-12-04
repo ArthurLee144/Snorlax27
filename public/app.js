@@ -84,7 +84,7 @@ var App = function (_React$Component) {
         null,
         React.createElement(
           'div',
-          null,
+          { id: 'intro' },
           React.createElement(
             'h2',
             null,
@@ -151,7 +151,7 @@ var App = function (_React$Component) {
                   { href: '#top' },
                   'Made with',
                   React.createElement('i', { className: 'ion-android-favorite icon-medium' }),
-                  'by Snorlax27 @ California, Maryland, and Toronto'
+                  ' in California & Massachusetts'
                 )
               )
             ),
@@ -190,7 +190,7 @@ var App = function (_React$Component) {
                   { href: '#top' },
                   'Made with',
                   React.createElement('i', { className: 'ion-android-favorite icon-medium' }),
-                  'by Snorlax27 @ California, Maryland, and Toronto'
+                  ' in California & Massachusetts'
                 )
               )
             )

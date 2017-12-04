@@ -310,15 +310,19 @@ form {
 }
 
 #hello {
+  color: white;
+  background-color: #43a7cc;
   border: solid;
   border-width: 5px;
-  border-color: #ce8b0e;
+  border-color: #43a7cc;
   display: inline-block;
   margin: 5%;
+  margin-left: 3.5%;
+  margin-right: 3.5%;
   padding: 20px;
   margin-bottom: 0px;
-  width: 40%;
-  border-radius: 8px;
+  width: 43%;
+  /*border-radius: 8px;*/
 }
 
 #textarea {
@@ -362,6 +366,7 @@ OLIVE #3D9970.
   padding-top: 1%;
   padding-bottom: 1%;
   word-spacing: 2px;
+  border-radius: 8px;
 }
 
 .ion-ios-glasses-outline {
@@ -471,9 +476,9 @@ font-family: 'Noto Serif', serif; */
 
 .btn-warning {
   margin-top: 5px;
-
-  /*margin-left: 80%;*/
-
+  margin-left: 0px;
+  margin-right: 0px;
+  width: 100%;
   font-weight: 300;
   text-decoration: none;
   color: white;
@@ -496,12 +501,12 @@ font-family: 'Noto Serif', serif; */
 }
 
 #loginbuttons {
-  width: 162px;
+  width: 100%;
   margin: 0 auto;
 }
 
 #guestbutton {
-  width: 165px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -529,3 +534,19 @@ font-family: 'Noto Serif', serif; */
   /*display: inline-block;*/
 }
 
+.navbar-brand {
+  font-family: 'Spectral SC', serif;
+  font-size: 35px !important;
+}
+
+#intro {
+  margin-top: 50px;
+}
+
+.create {
+  width: 80px;
+}
+
+.login {
+  width: 80px;
+}

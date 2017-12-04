@@ -77,13 +77,13 @@ class Login extends React.Component {
         <input  id="input" type="text" onChange={this.handlePassword}/>
         <div id="loginbuttons">
           <a href="#hello">
-            <button id="submit" className="btn btn-warning" type="submit" onClick={this.handleSubmit}>
+            <button id="submit" className="btn btn-warning login" type="submit" onClick={this.handleSubmit}>
               Login
             </button>
           </a>
           <div className="space"></div>
           <a href="#hello">
-            <button id="submit" className="btn btn-warning" type="submit" onClick={this.handleCreate}>
+            <button id="submit" className="btn btn-warning create" type="submit" onClick={this.handleCreate}>
               Create
             </button>
           </a>

@@ -85,8 +85,8 @@ class Input extends React.Component {
     }
 
     makeChart() {
-        console.log('makeChart was called')
           var context = this;
+        console.log('current state', context.state)
           Highcharts.chart('container', {
 
               chart: {
