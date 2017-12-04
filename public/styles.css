@@ -211,6 +211,7 @@ iframe {
 
 navbar {
   position:  fixed;
+  color: red;
 }
 
 .sticky {

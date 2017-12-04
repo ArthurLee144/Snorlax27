@@ -90,7 +90,7 @@ class App extends React.Component {
 
     if (this.state.userLoggedIn) {
       return (
-        <nav className= "navbar navbar-default navbar-fixed-bottom">
+        <nav className= "navbar navbar-default navbar-fixed-top">
           <div className="container-fluid">
             <div className="navbar-header">
               <a className="navbar-brand" href="#top">Emotisphere</a>
@@ -107,7 +107,7 @@ class App extends React.Component {
       );
     } else {
       return (
-        <nav className = "navbar navbar-default navbar-fixed-bottom">
+        <nav className = "navbar navbar-default navbar-fixed-top">
           <div className="container-fluid">
             <div className="navbar-header">
               <a className="navbar-brand" href="#top">Emotisphere</a>
