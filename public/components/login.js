@@ -30,10 +30,6 @@ var Login = function (_React$Component) {
   _createClass(Login, [{
     key: "handleSubmit",
     value: function handleSubmit(event) {
-      console.log('handleSubmit login called');
-      console.log(this.state.username);
-      console.log(this.state.password);
-
       var scope = this;
       if (event) {
         event.preventDefault();
@@ -53,7 +49,6 @@ var Login = function (_React$Component) {
         },
         error: function error(errorType, warn, exception) {
           //should render some warning to user
-          console.log('error was thorwn');
           console.log('errorType', errorType);
           console.log('warn', warn);
           console.log('exception', exception);
