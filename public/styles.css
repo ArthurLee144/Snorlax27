@@ -310,15 +310,19 @@ form {
 }
 
 #hello {
+  color: white;
+  background-color: #43a7cc;
   border: solid;
   border-width: 5px;
-  border-color: #ce8b0e;
+  border-color: #43a7cc;
   display: inline-block;
   margin: 5%;
+  margin-left: 3.5%;
+  margin-right: 3.5%;
   padding: 20px;
   margin-bottom: 0px;
-  width: 40%;
-  border-radius: 8px;
+  width: 43%;
+  /*border-radius: 8px;*/
 }
 
 #textarea {
