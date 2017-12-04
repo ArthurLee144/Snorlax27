@@ -56,6 +56,7 @@ header {
 @media screen and (min-width: 320px) { iframe { display:none; }}
 
 .seemless2 {
+  min-height: 365px;
   height: 70vh;
   padding:30px;
   background-attachment: fixed;
@@ -165,7 +166,8 @@ h1 {
 .btn {
   margin-top: 10px;
   /*display: inline-block;*/
-
+  margin-left: 5px;
+  margin-right: 5px;
   font-weight: 300;
   text-decoration: none;
   color: white;
@@ -334,7 +336,6 @@ form {
 
 #text {
   color: black;
-
 }
 
 h2 {
@@ -499,11 +500,26 @@ font-family: 'Noto Serif', serif; */
 }
 
 #loginbuttons {
-  width: 145px;
+  width: 162px;
   margin: 0 auto;
 }
 
 #guestbutton {
-  width: 157px;
+  width: 165px;
   margin: 0 auto;
 }
+
+.btn-success {
+  width: 100%;
+  margin: 0;
+}
+
+#togglebuttons {
+  width: 200px;
+  margin-left: 70px;
+}
+
+.form-control {
+  margin-top: 0px;
+}
+
