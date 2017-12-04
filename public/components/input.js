@@ -125,7 +125,7 @@ var Input = function (_React$Component) {
         },
 
         pane: {
-          size: '80%'
+          size: '75%'
         },
 
         xAxis: {
@@ -185,9 +185,9 @@ var Input = function (_React$Component) {
           React.createElement(
             "form",
             { id: "text", onSubmit: this.handleSubmit.bind(this) },
-            React.createElement("input", { className: "form-control", placeholder: "Enter title of your super awesome diary entry", name: "title", onChange: this.handleTitle }),
+            React.createElement("input", { className: "form-control", placeholder: "Optional: Enter title", name: "title", onChange: this.handleTitle }),
             React.createElement("br", null),
-            React.createElement("textarea", { id: "textarea", type: "text", name: "entry", onChange: this.handlePost }),
+            React.createElement("textarea", { id: "textarea", type: "text", name: "entry", placeholder: "Enter text", onChange: this.handlePost }),
             React.createElement("br", null),
             React.createElement(
               "button",
@@ -199,20 +199,6 @@ var Input = function (_React$Component) {
         React.createElement(
           "div",
           { id: "results" },
-          React.createElement(
-            "div",
-            { id: "togglebuttons" },
-            React.createElement(
-              "button",
-              { className: " btn btn-info", id: "btn-chart", onClick: this.chartClick.bind(this) },
-              "Chart"
-            ),
-            React.createElement(
-              "button",
-              { className: " btn btn-info", id: "btn-sentences", onClick: this.sentencesClick.bind(this) },
-              "Line by Line"
-            )
-          ),
           React.createElement("div", { id: "container" }),
           React.createElement(
             "div",
@@ -242,6 +228,20 @@ var Input = function (_React$Component) {
               })
             ),
             React.createElement("br", null)
+          ),
+          React.createElement(
+            "div",
+            { id: "togglebuttons" },
+            React.createElement(
+              "button",
+              { className: " btn btn-info", id: "btn-chart", onClick: this.chartClick.bind(this) },
+              "Chart"
+            ),
+            React.createElement(
+              "button",
+              { className: " btn btn-info", id: "btn-sentences", onClick: this.sentencesClick.bind(this) },
+              "Line by Line"
+            )
           )
         )
       );

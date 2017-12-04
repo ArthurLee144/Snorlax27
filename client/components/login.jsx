@@ -77,20 +77,20 @@ class Login extends React.Component {
         <input  id="input" type="text" onChange={this.handlePassword}/>
         <div id="loginbuttons">
           <a href="#hello">
-            <button id="submit" className="btn" type="submit" onClick={this.handleSubmit}>
+            <button id="submit" className="btn btn-warning" type="submit" onClick={this.handleSubmit}>
               Login
             </button>
           </a>
           <div className="space"></div>
           <a href="#hello">
-            <button id="submit" className="btn" type="submit" onClick={this.handleCreate}>
+            <button id="submit" className="btn btn-warning" type="submit" onClick={this.handleCreate}>
               Create
             </button>
           </a>
         </div>
         <div id="guestbutton">
           <a href="#hello">
-            <button id="submit" className="btn" type="submit">
+            <button id="submit" className="btn btn-warning" type="submit">
               Continue as a Guest
             </button>
           </a>

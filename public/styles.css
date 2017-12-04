@@ -323,7 +323,7 @@ form {
 #textarea {
   color: black;
   width: 100%;
-  height: 280px;
+  height: 327px;
 }
 
 .entryInfo {
@@ -457,15 +457,9 @@ font-family: 'Noto Serif', serif; */
 #container {
   min-width: 100px;
   max-width: 600px;
-  width:100%;
+  width: 601px;
   height: 400px;
-
-  display: inline-block;
-
-  margin-top: 10px;
-
-
-  vertical-align: top;
+  margin: 0 auto;
 }
 
 #inputdisplay {
@@ -497,6 +491,7 @@ font-family: 'Noto Serif', serif; */
 #impactful {
   width: 50%;
   margin-left: 0%;
+  height: 400px;
 }
 
 #loginbuttons {
@@ -515,11 +510,21 @@ font-family: 'Noto Serif', serif; */
 }
 
 #togglebuttons {
-  width: 200px;
-  margin-left: 70px;
+  width: 223px;
+  margin: 0 auto;
+  /*margin-top: 400px;*/
 }
 
 .form-control {
   margin-top: 0px;
+}
+
+#btn-chart {
+  width: 101.48px;
+  /*display: inline-block;*/
+}
+
+#btn-sentences {
+  /*display: inline-block;*/
 }
 
