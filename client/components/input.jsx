@@ -2,23 +2,27 @@ class Input extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      showChart: false,
       newestTitle: {},
       newestPost: {},
       username: '',
-      sentences: [
-      {'text': 'I am a dog', 'allSentiments': ['confident: 0.5', 'angry: 0.2']},
-      {'text': 'I am a cat', 'allSentiments': ['happy: 0.4']},
-      {'text': 'I am a turtle', 'allSentiments': ['slow: 0.6', 'confident: 0.8']}],
+      sentences: [],
       watsonScores: [null, null, null, null, null, null, null]
-
-
     }
     this.handleTitle = this.handleTitle.bind(this);
     this.handlePost = this.handlePost.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  chartClick(event) {
+    $("#impactful").hide()
+    $("#container").show()
+  }
 
+  sentencesClick(event) {
+    $("#container").hide()
+    $("#impactful").show()
+  }
 
   handlePost(event) {
     this.setState({newestPost: event.target.value})
@@ -77,58 +81,59 @@ class Input extends React.Component {
     var context = this;
     console.log('MAKE MY CHART', context.state.watsonScores);
     context.makeChart();
+    $("#impactful").hide()
     }
 
     makeChart() {
         console.log('makeChart was called')
-        var context = this;
-        Highcharts.chart('container', {
+          var context = this;
+          Highcharts.chart('container', {
 
-            chart: {
-                polar: true,
-                type: 'area'
-            },
+              chart: {
+                  polar: true,
+                  type: 'area'
+              },
 
-            title: {
-                text: "Your Text's Sentiments",
-                x: -80
-            },
+              title: {
+                  text: "Your Text's Sentiments",
+                  x: 0,
 
-            pane: {
-                size: '80%'
-            },
+              },
 
-            xAxis: {
-                categories: ['Anger', 'Fear', 'Joy', 'Sadness', 'Analytical', 'Confident', 'Tentative'],
-                tickmarkPlacement: 'on',
-                lineWidth: 0
-            },
+              pane: {
+                  size: '80%'
+              },
 
-            yAxis: {
-                gridLineInterpolation: 'polygon',
-                lineWidth: 0,
-                min: 0
-            },
+              xAxis: {
+                  categories: ['Anger', 'Fear', 'Joy', 'Sadness', 'Analytical', 'Confident', 'Tentative'],
+                  tickmarkPlacement: 'on',
+                  lineWidth: 0
+              },
 
-            tooltip: {
-                shared: true,
-                pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.2f}%</b><br/>'
-            },
+              yAxis: {
+                  gridLineInterpolation: 'polygon',
+                  lineWidth: 0,
+                  min: 0
+              },
 
-            legend: {
-                align: 'right',
-                verticalAlign: 'top',
-                y: 70,
-                layout: 'vertical'
-            },
+              tooltip: {
+                  shared: true,
+                  pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.2f}%</b><br/>'
+              },
 
-            series: [{
-        name: 'Sentiment Scores (0-100)',
-        data: context.state.watsonScores,
-        pointPlacement: 'on'
-    }]
+              // legend: {
+              //     align: 'center',
+              //     verticalAlign: 'middle',
+              //     y: 100,
+              //     layout: 'vertical'
+              // },
 
-        });
+              series: [{
+          name: 'Sentiment Scores (0-100)',
+          data: context.state.watsonScores,
+          pointPlacement: 'on'
+      }]
+          });
     }
 
   render() {
@@ -140,29 +145,30 @@ class Input extends React.Component {
 
         <input className="form-control" placeholder="Enter title of your super awesome diary entry" name="title" onChange={this.handleTitle}></input><br></br>
         <textarea id="textarea" type='text' name="entry" onChange={this.handlePost} /><br></br>
-        <button type="submit" className="btn btn-submit" value="Submit" onClick={this.handleSubmit.bind(this)}>Analyze</button>
+        <button type="submit" className="btn btn-success" value="Submit" onClick={this.handleSubmit.bind(this)}>Analyze</button>
       </form>
       </div>
 
       <div id="results">
-      <div id="container"></div>
+        <button className=" btn btn-info" id="btn-chart" onClick={this.chartClick.bind(this)}>Chart</button>
+        <button className=" btn btn-info" id="btn-sentences" onClick={this.sentencesClick.bind(this)}>Line by Line</button>
 
+          <div id="container"></div>
+
+          <div id="impactful">
+          Your most impactful sentences:<br/>
+              <div>
+              {this.state.sentences.map((sentence, i) =>
+                <div>
+                <div>{sentence.text}</div>
+                {sentence.allSentiments.map((emotion) =>
+                  <div>{emotion}</div>
+                  )}
+                </div>
+                )}
+              </div><br/>
           </div>
-
-      <div id="impactful">
-      Your most impactful sentences:<br/>
-          <div>
-          {this.state.sentences.map((sentence, i) =>
-            <div>
-            <div>{sentence.text}</div>
-            {sentence.allSentiments.map((emotion) =>
-              <div>{emotion}</div>
-              )}
-            </div>
-            )}
-          </div><br/>
       </div>
-
       </div>
     )
   }

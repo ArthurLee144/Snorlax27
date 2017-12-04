@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -17,12 +17,12 @@ var Input = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Input.__proto__ || Object.getPrototypeOf(Input)).call(this, props));
 
     _this.state = {
+      showChart: false,
       newestTitle: {},
       newestPost: {},
       username: '',
-      sentences: [{ 'text': 'I am a dog', 'allSentiments': ['confident: 0.5', 'angry: 0.2'] }, { 'text': 'I am a cat', 'allSentiments': ['happy: 0.4'] }, { 'text': 'I am a turtle', 'allSentiments': ['slow: 0.6', 'confident: 0.8'] }],
+      sentences: [],
       watsonScores: [null, null, null, null, null, null, null]
-
     };
     _this.handleTitle = _this.handleTitle.bind(_this);
     _this.handlePost = _this.handlePost.bind(_this);
@@ -31,17 +31,29 @@ var Input = function (_React$Component) {
   }
 
   _createClass(Input, [{
-    key: 'handlePost',
+    key: "chartClick",
+    value: function chartClick(event) {
+      $("#impactful").hide();
+      $("#container").show();
+    }
+  }, {
+    key: "sentencesClick",
+    value: function sentencesClick(event) {
+      $("#container").hide();
+      $("#impactful").show();
+    }
+  }, {
+    key: "handlePost",
     value: function handlePost(event) {
       this.setState({ newestPost: event.target.value });
     }
   }, {
-    key: 'handleTitle',
+    key: "handleTitle",
     value: function handleTitle(event) {
       this.setState({ newestTitle: event.target.value });
     }
   }, {
-    key: 'handleGuestGet',
+    key: "handleGuestGet",
     value: function handleGuestGet() {
       var context = this;
       $.ajax({
@@ -62,7 +74,7 @@ var Input = function (_React$Component) {
       });
     }
   }, {
-    key: 'handleSubmit',
+    key: "handleSubmit",
     value: function handleSubmit(event) {
       var context = this;
       event.preventDefault();
@@ -87,14 +99,15 @@ var Input = function (_React$Component) {
       }
     }
   }, {
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
       var context = this;
       console.log('MAKE MY CHART', context.state.watsonScores);
       context.makeChart();
+      $("#impactful").hide();
     }
   }, {
-    key: 'makeChart',
+    key: "makeChart",
     value: function makeChart() {
       console.log('makeChart was called');
       var context = this;
@@ -107,7 +120,8 @@ var Input = function (_React$Component) {
 
         title: {
           text: "Your Text's Sentiments",
-          x: -80
+          x: 0
+
         },
 
         pane: {
@@ -131,91 +145,100 @@ var Input = function (_React$Component) {
           pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.2f}%</b><br/>'
         },
 
-        legend: {
-          align: 'right',
-          verticalAlign: 'top',
-          y: 70,
-          layout: 'vertical'
-        },
+        // legend: {
+        //     align: 'center',
+        //     verticalAlign: 'middle',
+        //     y: 100,
+        //     layout: 'vertical'
+        // },
 
         series: [{
           name: 'Sentiment Scores (0-100)',
           data: context.state.watsonScores,
           pointPlacement: 'on'
         }]
-
       });
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       return React.createElement(
-        'div',
+        "div",
         null,
         React.createElement(
-          'span',
+          "span",
           null,
           React.createElement(
-            'h2',
-            { id: 'hello' },
-            'Write text to be analyzed'
+            "h2",
+            { id: "hello" },
+            "Write text to be analyzed"
           ),
           React.createElement(
-            'h2',
-            { id: 'hello' },
-            'Results'
+            "h2",
+            { id: "hello" },
+            "Results"
           )
         ),
         React.createElement(
-          'div',
-          { id: 'inputdisplay' },
+          "div",
+          { id: "inputdisplay" },
           React.createElement(
-            'form',
-            { id: 'text', onSubmit: this.handleSubmit.bind(this) },
-            React.createElement('input', { className: 'form-control', placeholder: 'Enter title of your super awesome diary entry', name: 'title', onChange: this.handleTitle }),
-            React.createElement('br', null),
-            React.createElement('textarea', { id: 'textarea', type: 'text', name: 'entry', onChange: this.handlePost }),
-            React.createElement('br', null),
+            "form",
+            { id: "text", onSubmit: this.handleSubmit.bind(this) },
+            React.createElement("input", { className: "form-control", placeholder: "Enter title of your super awesome diary entry", name: "title", onChange: this.handleTitle }),
+            React.createElement("br", null),
+            React.createElement("textarea", { id: "textarea", type: "text", name: "entry", onChange: this.handlePost }),
+            React.createElement("br", null),
             React.createElement(
-              'button',
-              { type: 'submit', className: 'btn btn-submit', value: 'Submit', onClick: this.handleSubmit.bind(this) },
-              'Analyze'
+              "button",
+              { type: "submit", className: "btn btn-success", value: "Submit", onClick: this.handleSubmit.bind(this) },
+              "Analyze"
             )
           )
         ),
         React.createElement(
-          'div',
-          { id: 'results' },
-          React.createElement('div', { id: 'container' })
-        ),
-        React.createElement(
-          'div',
-          { id: 'impactful' },
-          'Your most impactful sentences:',
-          React.createElement('br', null),
+          "div",
+          { id: "results" },
           React.createElement(
-            'div',
-            null,
-            this.state.sentences.map(function (sentence, i) {
-              return React.createElement(
-                'div',
-                null,
-                React.createElement(
-                  'div',
-                  null,
-                  sentence.text
-                ),
-                sentence.allSentiments.map(function (emotion) {
-                  return React.createElement(
-                    'div',
-                    null,
-                    emotion
-                  );
-                })
-              );
-            })
+            "button",
+            { className: " btn btn-info", id: "btn-chart", onClick: this.chartClick.bind(this) },
+            "Chart"
           ),
-          React.createElement('br', null)
+          React.createElement(
+            "button",
+            { className: " btn btn-info", id: "btn-sentences", onClick: this.sentencesClick.bind(this) },
+            "Line by Line"
+          ),
+          React.createElement("div", { id: "container" }),
+          React.createElement(
+            "div",
+            { id: "impactful" },
+            "Your most impactful sentences:",
+            React.createElement("br", null),
+            React.createElement(
+              "div",
+              null,
+              this.state.sentences.map(function (sentence, i) {
+                return React.createElement(
+                  "div",
+                  null,
+                  React.createElement(
+                    "div",
+                    null,
+                    sentence.text
+                  ),
+                  sentence.allSentiments.map(function (emotion) {
+                    return React.createElement(
+                      "div",
+                      null,
+                      emotion
+                    );
+                  })
+                );
+              })
+            ),
+            React.createElement("br", null)
+          )
         )
       );
     }
