@@ -78,9 +78,9 @@ class App extends React.Component {
   seemlessBackground() {
     return (
       <div className="seemless2">
-        <div id="centerlog">
+
           <Login handleLogin={this.handleLogin}/>
-        </div>
+
       </div>
     );
   }

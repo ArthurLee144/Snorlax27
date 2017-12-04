@@ -57,7 +57,7 @@ header {
 
 .seemless2 {
   height: 70vh;
-  margin-left: 0%;
+  padding:30px;
   background-attachment: fixed;
   background-color: #fff;
   background-size: cover;
@@ -164,8 +164,8 @@ h1 {
 
 .btn {
   margin-top: 10px;
-  display: inline-block;
-  margin-left: 6%;
+  /*display: inline-block;*/
+
   font-weight: 300;
   text-decoration: none;
   color: white;
@@ -244,21 +244,18 @@ navbar {
   width: 310px;
   height: 310px;
   padding: 50px;
-  display: inline-block;
-  position: absolute;
-  margin: auto;
-
+  margin: 0 auto;
 }
-
+/*
 #centerlog {
   display: inline-block;
   position: absolute;
   margin-top: 2%;
-  /*margin: auto;*/
 
-  margin-left: 35%;
-  /*margin-right: 35%;*/
-}
+  width: 310px;
+  margin: 0 auto;
+
+}*/
 
 i {
   margin-left: 48%;
@@ -312,12 +309,13 @@ form {
 #hello {
   border: solid;
   border-width: 5px;
-  border-color: lightblue;
+  border-color: #ce8b0e;
   display: inline-block;
   margin: 5%;
   padding: 20px;
   margin-bottom: 0px;
   width: 40%;
+  border-radius: 8px;
 }
 
 #textarea {
@@ -475,15 +473,14 @@ font-family: 'Noto Serif', serif; */
   margin-right: 0px;
 }
 
-.btn-submit {
+.btn-warning {
   margin-top: 5px;
-  display: inline-block;
+
   /*margin-left: 80%;*/
-  float: right;
+
   font-weight: 300;
   text-decoration: none;
   color: white;
-  background-color: #ce8b0e;
 }
 
 #results {
@@ -501,3 +498,12 @@ font-family: 'Noto Serif', serif; */
   margin-left: 0%;
 }
 
+#loginbuttons {
+  width: 145px;
+  margin: 0 auto;
+}
+
+#guestbutton {
+  width: 157px;
+  margin: 0 auto;
+}

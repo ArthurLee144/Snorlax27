@@ -116,11 +116,7 @@ var App = function (_React$Component) {
       return React.createElement(
         'div',
         { className: 'seemless2' },
-        React.createElement(
-          'div',
-          { id: 'centerlog' },
-          React.createElement(Login, { handleLogin: this.handleLogin })
-        )
+        React.createElement(Login, { handleLogin: this.handleLogin })
       );
     }
   }, {
