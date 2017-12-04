@@ -125,7 +125,7 @@ var Input = function (_React$Component) {
         },
 
         pane: {
-          size: '80%'
+          size: '75%'
         },
 
         xAxis: {
@@ -185,9 +185,9 @@ var Input = function (_React$Component) {
           React.createElement(
             "form",
             { id: "text", onSubmit: this.handleSubmit.bind(this) },
-            React.createElement("input", { className: "form-control", placeholder: "Enter title of your super awesome diary entry", name: "title", onChange: this.handleTitle }),
+            React.createElement("input", { className: "form-control", placeholder: "Optional: Enter title", name: "title", onChange: this.handleTitle }),
             React.createElement("br", null),
-            React.createElement("textarea", { id: "textarea", type: "text", name: "entry", onChange: this.handlePost }),
+            React.createElement("textarea", { id: "textarea", type: "text", name: "entry", placeholder: "Enter text", onChange: this.handlePost }),
             React.createElement("br", null),
             React.createElement(
               "button",
@@ -199,6 +199,42 @@ var Input = function (_React$Component) {
         React.createElement(
           "div",
           { id: "results" },
+          React.createElement("div", { id: "container" }),
+          React.createElement(
+            "div",
+            { id: "impactful" },
+            React.createElement("br", null),
+            React.createElement(
+              "h4",
+              null,
+              "Your most impactful sentences:"
+            ),
+            React.createElement("br", null),
+            React.createElement(
+              "div",
+              null,
+              this.state.sentences.map(function (sentence, i) {
+                return React.createElement(
+                  "div",
+                  null,
+                  React.createElement(
+                    "h4",
+                    null,
+                    sentence.text
+                  ),
+                  sentence.allSentiments.map(function (emotion) {
+                    return React.createElement(
+                      "div",
+                      null,
+                      emotion
+                    );
+                  }),
+                  React.createElement("br", null)
+                );
+              })
+            ),
+            React.createElement("br", null)
+          ),
           React.createElement(
             "div",
             { id: "togglebuttons" },
@@ -212,36 +248,6 @@ var Input = function (_React$Component) {
               { className: " btn btn-info", id: "btn-sentences", onClick: this.sentencesClick.bind(this) },
               "Line by Line"
             )
-          ),
-          React.createElement("div", { id: "container" }),
-          React.createElement(
-            "div",
-            { id: "impactful" },
-            "Your most impactful sentences:",
-            React.createElement("br", null),
-            React.createElement(
-              "div",
-              null,
-              this.state.sentences.map(function (sentence, i) {
-                return React.createElement(
-                  "div",
-                  null,
-                  React.createElement(
-                    "div",
-                    null,
-                    sentence.text
-                  ),
-                  sentence.allSentiments.map(function (emotion) {
-                    return React.createElement(
-                      "div",
-                      null,
-                      emotion
-                    );
-                  })
-                );
-              })
-            ),
-            React.createElement("br", null)
           )
         )
       );

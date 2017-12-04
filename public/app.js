@@ -127,7 +127,7 @@ var App = function (_React$Component) {
       if (this.state.userLoggedIn) {
         return React.createElement(
           'nav',
-          { className: 'navbar navbar-default navbar-fixed-bottom' },
+          { className: 'navbar navbar-default navbar-fixed-top' },
           React.createElement(
             'div',
             { className: 'container-fluid' },
@@ -166,7 +166,7 @@ var App = function (_React$Component) {
       } else {
         return React.createElement(
           'nav',
-          { className: 'navbar navbar-default navbar-fixed-bottom' },
+          { className: 'navbar navbar-default navbar-fixed-top' },
           React.createElement(
             'div',
             { className: 'container-fluid' },

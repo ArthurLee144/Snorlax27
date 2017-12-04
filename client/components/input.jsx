@@ -101,7 +101,7 @@ class Input extends React.Component {
               },
 
               pane: {
-                  size: '80%'
+                  size: '75%'
               },
 
               xAxis: {
@@ -143,32 +143,32 @@ class Input extends React.Component {
       <div id="inputdisplay">
       <form id="text" onSubmit={this.handleSubmit.bind(this)}>
 
-        <input className="form-control" placeholder="Enter title of your super awesome diary entry" name="title" onChange={this.handleTitle}></input><br></br>
-        <textarea id="textarea" type='text' name="entry" onChange={this.handlePost} /><br></br>
+        <input className="form-control" placeholder="Optional: Enter title" name="title" onChange={this.handleTitle}></input><br></br>
+        <textarea id="textarea" type='text' name="entry" placeholder="Enter text" onChange={this.handlePost} /><br></br>
         <button type="submit" className="btn btn-success" value="Submit" onClick={this.handleSubmit.bind(this)}>Analyze</button>
       </form>
       </div>
 
       <div id="results">
-        <div id="togglebuttons">
-          <button className=" btn btn-info" id="btn-chart" onClick={this.chartClick.bind(this)}>Chart</button>
-          <button className=" btn btn-info" id="btn-sentences" onClick={this.sentencesClick.bind(this)}>Line by Line</button>
-        </div>
-          <div id="container"></div>
+        <div id="container"></div>
 
-          <div id="impactful">
-          Your most impactful sentences:<br/>
+          <div id="impactful"><br/>
+          <h4>Your most impactful sentences:</h4><br/>
               <div>
               {this.state.sentences.map((sentence, i) =>
                 <div>
-                <div>{sentence.text}</div>
-                {sentence.allSentiments.map((emotion) =>
-                  <div>{emotion}</div>
-                  )}
+                  <h4>{sentence.text}</h4>
+                  {sentence.allSentiments.map((emotion) =>
+                    <div>{emotion}</div>
+                  )}<br/>
                 </div>
                 )}
               </div><br/>
           </div>
+        <div id="togglebuttons">
+          <button className=" btn btn-info" id="btn-chart" onClick={this.chartClick.bind(this)}>Chart</button>
+          <button className=" btn btn-info" id="btn-sentences" onClick={this.sentencesClick.bind(this)}>Line by Line</button>
+        </div>
       </div>
       </div>
     )
