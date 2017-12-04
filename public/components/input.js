@@ -21,7 +21,7 @@ var Input = function (_React$Component) {
       newestPost: {},
       username: '',
       sentences: [{ 'text': 'I am a dog', 'allSentiments': ['confident: 0.5', 'angry: 0.2'] }, { 'text': 'I am a cat', 'allSentiments': ['happy: 0.4'] }, { 'text': 'I am a turtle', 'allSentiments': ['slow: 0.6', 'confident: 0.8'] }],
-      watsonScores: [null, null, null, null, null, null, null]
+      watsonScores: [3, 5, 3, 7, 8, 1, 9]
 
     };
     _this.handleTitle = _this.handleTitle.bind(_this);
@@ -41,32 +41,12 @@ var Input = function (_React$Component) {
       this.setState({ newestTitle: event.target.value });
     }
   }, {
-    key: 'handleGuestGet',
-    value: function handleGuestGet() {
-      var context = this;
-      $.ajax({
-        type: 'GET',
-        url: '/guest',
-        data: {
-          text: this.state.newestPost
-        },
-        success: function success(data) {
-          context.setState({
-            sentences: data.watsonData.sentences,
-            watsonScores: data.watsonData.overallData }, function () {
-            console.log('successful get for watson in guest get');
-          });
-        }
-      }).then(function () {
-        context.makeChart();
-      });
-    }
-  }, {
     key: 'handleSubmit',
     value: function handleSubmit(event) {
       var context = this;
       event.preventDefault();
       if (context.props.loggedIn) {
+
         $.ajax({
           type: 'POST',
           url: '/entries',
@@ -81,9 +61,34 @@ var Input = function (_React$Component) {
         }).then(function () {
           context.props.rerender();
         });
-        context.handleGuestGet();
+
+        $.ajax({
+          type: 'GET',
+          url: '/guest',
+          data: {
+            text: this.state.newestPost
+          },
+          success: function success(data) {
+            console.log('success get request data ', data.watsonData.sentences, context.state.sentences);
+            context.setState({ sentences: data.watsonData.sentences }, function () {
+              console.log(context.state.sentences);
+            });
+          }
+        });
       } else {
-        context.handleGuestGet();
+        $.ajax({
+          type: 'GET',
+          url: '/guest',
+          data: {
+            text: this.state.newestPost
+          },
+          success: function success(data) {
+            console.log('success get request data ', data.watsonData.sentences, context.state.sentences);
+            context.setState({ sentences: data.watsonData.sentences }, function () {
+              console.log(context.state.sentences);
+            });
+          }
+        });
       }
     }
   }, {
@@ -128,7 +133,7 @@ var Input = function (_React$Component) {
 
         tooltip: {
           shared: true,
-          pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.2f}</b><br/>'
+          pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
         },
 
         legend: {

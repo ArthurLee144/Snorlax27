@@ -9,7 +9,7 @@ class Input extends React.Component {
       {'text': 'I am a dog', 'allSentiments': ['confident: 0.5', 'angry: 0.2']},
       {'text': 'I am a cat', 'allSentiments': ['happy: 0.4']},
       {'text': 'I am a turtle', 'allSentiments': ['slow: 0.6', 'confident: 0.8']}],
-      watsonScores: [null, null, null, null, null, null, null]
+      watsonScores: [3, 5, 3, 7, 8, 1, 9]
 
 
     }
@@ -28,31 +28,11 @@ class Input extends React.Component {
     this.setState({newestTitle: event.target.value})
   }
 
-  handleGuestGet() {
-    var context = this;
-    $.ajax({
-        type: 'GET',
-        url: '/guest',
-        data: {
-          text: this.state.newestPost,
-        },
-        success: function(data) {
-          context.setState({
-            sentences: data.watsonData.sentences,
-            watsonScores: data.watsonData.overallData}, function() {
-              console.log('successful get for watson in guest get');
-            }
-          );
-        }
-    }).then(function() {
-      context.makeChart();
-    });
-  }
-
   handleSubmit(event) {
     var context = this;
     event.preventDefault();
       if (context.props.loggedIn) {
+
         $.ajax({
           type: 'POST',
           url: '/entries',
@@ -67,10 +47,37 @@ class Input extends React.Component {
         }).then(function() {
           context.props.rerender();
         });
-        context.handleGuestGet();
+
+        $.ajax({
+          type: 'GET',
+          url: '/guest',
+          data: {
+            text: this.state.newestPost,
+          },
+          success: function(data) {
+            console.log('success get request data ', data.watsonData.sentences, context.state.sentences)
+            context.setState({sentences: data.watsonData.sentences}, function() {
+              console.log(context.state.sentences)
+            })
+          }
+          })
+
       } else {
-        context.handleGuestGet();
+          $.ajax({
+          type: 'GET',
+          url: '/guest',
+          data: {
+            text: this.state.newestPost,
+          },
+          success: function(data) {
+            console.log('success get request data ', data.watsonData.sentences, context.state.sentences)
+            context.setState({sentences: data.watsonData.sentences}, function() {
+              console.log(context.state.sentences)
+            })
+          }
+          })
       }
+
   }
 
   componentDidMount() {
@@ -112,7 +119,7 @@ class Input extends React.Component {
 
             tooltip: {
                 shared: true,
-                pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.2f}</b><br/>'
+                pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
             },
 
             legend: {
