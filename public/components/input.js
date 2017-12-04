@@ -203,6 +203,7 @@ var Input = function (_React$Component) {
           React.createElement(
             "div",
             { id: "impactful" },
+            React.createElement("br", null),
             React.createElement(
               "h4",
               null,
