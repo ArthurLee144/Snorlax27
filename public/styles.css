@@ -489,9 +489,9 @@ font-family: 'Noto Serif', serif; */
 }
 
 #impactful {
-  width: 50%;
-  margin-left: 0%;
-  height: 400px;
+  margin-left: 50px;
+  margin-right: 50px;
+  height: 390px;
 }
 
 #loginbuttons {

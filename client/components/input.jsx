@@ -153,14 +153,14 @@ class Input extends React.Component {
         <div id="container"></div>
 
           <div id="impactful">
-          Your most impactful sentences:<br/>
+          <h4>Your most impactful sentences:</h4><br/>
               <div>
               {this.state.sentences.map((sentence, i) =>
                 <div>
-                <div>{sentence.text}</div>
-                {sentence.allSentiments.map((emotion) =>
-                  <div>{emotion}</div>
-                  )}
+                  <h4>{sentence.text}</h4>
+                  {sentence.allSentiments.map((emotion) =>
+                    <div>{emotion}</div>
+                  )}<br/>
                 </div>
                 )}
               </div><br/>

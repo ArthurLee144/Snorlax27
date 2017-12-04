@@ -203,7 +203,11 @@ var Input = function (_React$Component) {
           React.createElement(
             "div",
             { id: "impactful" },
-            "Your most impactful sentences:",
+            React.createElement(
+              "h4",
+              null,
+              "Your most impactful sentences:"
+            ),
             React.createElement("br", null),
             React.createElement(
               "div",
@@ -213,7 +217,7 @@ var Input = function (_React$Component) {
                   "div",
                   null,
                   React.createElement(
-                    "div",
+                    "h4",
                     null,
                     sentence.text
                   ),
@@ -223,7 +227,8 @@ var Input = function (_React$Component) {
                       null,
                       emotion
                     );
-                  })
+                  }),
+                  React.createElement("br", null)
                 );
               })
             ),
