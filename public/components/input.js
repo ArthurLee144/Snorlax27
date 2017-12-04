@@ -104,6 +104,7 @@ var Input = function (_React$Component) {
       var context = this;
       console.log('MAKE MY CHART', context.state.watsonScores);
       context.makeChart();
+      $("#impactful").hide();
     }
   }, {
     key: "makeChart",
@@ -119,7 +120,8 @@ var Input = function (_React$Component) {
 
         title: {
           text: "Your Text's Sentiments",
-          x: -80
+          x: 0
+
         },
 
         pane: {
@@ -144,9 +146,9 @@ var Input = function (_React$Component) {
         },
 
         // legend: {
-        //     align: 'right',
-        //     verticalAlign: 'top',
-        //     y: 70,
+        //     align: 'center',
+        //     verticalAlign: 'middle',
+        //     y: 100,
         //     layout: 'vertical'
         // },
 
@@ -189,7 +191,7 @@ var Input = function (_React$Component) {
             React.createElement("br", null),
             React.createElement(
               "button",
-              { type: "submit", className: "btn btn-submit", value: "Submit", onClick: this.handleSubmit.bind(this) },
+              { type: "submit", className: "btn btn-success", value: "Submit", onClick: this.handleSubmit.bind(this) },
               "Analyze"
             )
           )
@@ -199,13 +201,13 @@ var Input = function (_React$Component) {
           { id: "results" },
           React.createElement(
             "button",
-            { id: "btn-chart", onClick: this.chartClick.bind(this) },
+            { className: " btn btn-info", id: "btn-chart", onClick: this.chartClick.bind(this) },
             "Chart"
           ),
           React.createElement(
             "button",
-            { id: "btn-sentences", onClick: this.sentencesClick.bind(this) },
-            "Impactful"
+            { className: " btn btn-info", id: "btn-sentences", onClick: this.sentencesClick.bind(this) },
+            "Line by Line"
           ),
           React.createElement("div", { id: "container" }),
           React.createElement(

@@ -81,6 +81,7 @@ class Input extends React.Component {
     var context = this;
     console.log('MAKE MY CHART', context.state.watsonScores);
     context.makeChart();
+    $("#impactful").hide()
     }
 
     makeChart() {
@@ -95,7 +96,8 @@ class Input extends React.Component {
 
               title: {
                   text: "Your Text's Sentiments",
-                  x: -80
+                  x: 0,
+
               },
 
               pane: {
@@ -120,9 +122,9 @@ class Input extends React.Component {
               },
 
               // legend: {
-              //     align: 'right',
-              //     verticalAlign: 'top',
-              //     y: 70,
+              //     align: 'center',
+              //     verticalAlign: 'middle',
+              //     y: 100,
               //     layout: 'vertical'
               // },
 
@@ -143,13 +145,13 @@ class Input extends React.Component {
 
         <input className="form-control" placeholder="Enter title of your super awesome diary entry" name="title" onChange={this.handleTitle}></input><br></br>
         <textarea id="textarea" type='text' name="entry" onChange={this.handlePost} /><br></br>
-        <button type="submit" className="btn btn-submit" value="Submit" onClick={this.handleSubmit.bind(this)}>Analyze</button>
+        <button type="submit" className="btn btn-success" value="Submit" onClick={this.handleSubmit.bind(this)}>Analyze</button>
       </form>
       </div>
 
       <div id="results">
-        <button id="btn-chart" onClick={this.chartClick.bind(this)}>Chart</button>
-        <button id="btn-sentences" onClick={this.sentencesClick.bind(this)}>Impactful</button>
+        <button className=" btn btn-info" id="btn-chart" onClick={this.chartClick.bind(this)}>Chart</button>
+        <button className=" btn btn-info" id="btn-sentences" onClick={this.sentencesClick.bind(this)}>Line by Line</button>
 
           <div id="container"></div>
 
